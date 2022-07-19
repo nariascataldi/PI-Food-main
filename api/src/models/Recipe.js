@@ -5,9 +5,9 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('recipe', {
     id: {
-      type:DataTypes.UUID,
+      type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false, 
+      allowNull: false,
       primaryKey: true
 
     },
@@ -30,13 +30,13 @@ module.exports = (sequelize) => {
     createInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue:true
+      defaultValue: true
     }
-    
+
   });
 };
 /*
-[ ] Receta con las siguientes propiedades:
+[✔] Receta con las siguientes propiedades:
   ID: *                         id
   Nombre *                      title
   Resumen del plato *           summary
