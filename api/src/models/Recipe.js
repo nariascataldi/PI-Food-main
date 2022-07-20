@@ -9,14 +9,13 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
-
     },
     title: {
       type: DataTypes.STRING,
       allowNull: false
     },
     summary: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false
     },
     healthScore: {
@@ -24,7 +23,11 @@ module.exports = (sequelize) => {
       allowNull: true
     },
     analyzedInstructions: {
-      type: DataTypes.ARRAY,
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    image: {
+      type: DataTypes.STRING,
       allowNull: true
     },
     createInDb: {
@@ -32,7 +35,6 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: true
     }
-
   });
 };
 /*
