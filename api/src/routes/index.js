@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const axios = require('axios');
-const { Recipe, Diet } = require('../db');
-const { API_RECIPES_INFO } = require('../utils/config')
+
+const model = require('../apiInfo/allData')
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -10,48 +10,14 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-const getApiInfo = async () => {
-  const apiUrl = await axios.get(API_RECIPES_INFO); //
-  console.log(apiUrl);
-
-  const apiInfo = await apiUrl.data.results.map(elApi => {
-    return {
-      id: elApi.id,
-      title: elApi.title,
-      summary: elApi.summary,
-      diets: elApi.diets.map(el => el),
-      image: elApi.image,
-      healthScore: elApi.healthScore,
-      analyzedInstructions: elApi.analyzedInstructions,
-    }
-  });
-  return apiInfo;
-}
-const getDbInfo = async () => {
-  return await Recipe.findAll({
-    include: {
-      model: Diet,
-      attributes: ['title'],
-      through: {
-        attributes: []
-      }
-    }
-  })
-};
-
-const getAllRecipes = async () => {
-  const apiInfo = await getApiInfo();
-  const dbInfo = await getDbInfo();
-  const infoTotal = apiInfo.concat(dbInfo);
-  return infoTotal;
-}
-//-----------------------------------------------------
 router.get('/recipes', async (req, res) => {
   const name = req.query.name;
-  let recipesTotal = await getAllRecipes();
+  let recipesTotal = await model.getAllRecipes();
   if (name) {
-    let recipeName = await recipesTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()));
-    recipeName.length ? res.status(200).send(recipeName) : res.status(404).send('No está la Receta ');
+    let recipeQuery = await recipesTotal.filter(r => r.name.toLowrCase().includes(name.toString().toLowerCase()));
+    recipeQuery.length ? 
+      res.status(200).send(recipeQuery) :
+      res.status(404).send(`No está la Receta ${name}`);
   } else {
     res.status(200).send(recipesTotal)
   }
@@ -60,7 +26,7 @@ router.get('/recipes', async (req, res) => {
 
 module.exports = router;
 /*
- GET /recipes?name="...":
+[✔] GET /recipes?name="...":
 Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
 Si no existe ninguna receta mostrar un mensaje adecuado
  GET /recipes/{idReceta}:
