@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const axios = require('axios');
 const { Recipe, Diet } = require('../db');
-const {API_RECIPES_INFO} = require('../utils/config')
-
+const { API_RECIPES_INFO } = require('../utils/config')
+const apiAllUtils = ('../utils/UTILS_FOOD/complexSearchInfo.json')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -11,26 +11,25 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 const getApiInfo = async () => {
-  const apiUrl = await axios.get(API_RECIPES_INFO);
-  const apiInfo = await apiUrl.data.map(el => {
+  const apiUrl = await axios.get(apiAllUtils); //API_RECIPES_INFO
+  const apiInfo = await apiUrl.data.results.map(elApi => {
     return {
-      id: el.char_id,
-      name: el.name,      //aquí se puede unificar datos, ya que al "name:" le podemos asignar como querramos
-      birthday: el.birthday,
-      occupation: el.occupation.map(el => el),
-      img: el.img,
-      status: el.status,
-      nickname: el.nickname,
-      appearance: el.appearance.map(el => el)
+      id: elApi.id,
+      title: elApi.title,
+      summary: elApi.summary,
+      diets: elApi.diets.map(el => el),
+      image: elApi.image,
+      healthScore: elApi.healthScore,
+      analyzedInstructions: elApi.analyzedInstructions,
     }
   });
   return apiInfo;
 }
 const getDbInfo = async () => {
-  return await Character.findAll({
+  return await Recipe.findAll({
     include: {
-      model: Occupation,
-      attributes: ['name'],
+      model: Diet,
+      attributes: ['title'],
       through: {
         attributes: []
       }
@@ -38,12 +37,24 @@ const getDbInfo = async () => {
   })
 };
 
-const getAllCharacter = async () => {
+const getAllRecipes = async () => {
   const apiInfo = await getApiInfo();
   const dbInfo = await getDbInfo();
   const infoTotal = apiInfo.concat(dbInfo);
   return infoTotal;
 }
+//-----------------------------------------------------
+router.get('/recipes', async (req, res) => {
+  const name = req.query.name;
+  let recipesTotal = await getAllRecipes();
+  if (name) {
+    let recipeName = await recipesTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()));
+    recipeName.length ? res.status(200).send(recipeName) : res.status(404).send('No está la Receta ');
+  } else {
+    res.status(200).send(recipesTotal)
+  }
+});
+
 
 module.exports = router;
 /*
