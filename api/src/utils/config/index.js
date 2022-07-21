@@ -3,7 +3,7 @@ const API_KEY = process.env.API_KEY;
 const BACKEND_PORT = 3001;
 // Endpoints/Flags que pueden utilizar
 const API_RECIPES = 'https://api.spoonacular.com/recipes/complexSearch' + '?apiKey=' + API_KEY; //https://api.spoonacular.com/recipes/complexSearch?apiKey=07a9cf8e55824b2ebcc60aaa3b93d787
-const API_RECIPES_INFO = 'https://api.spoonacular.com/recipes/complexSearch' + '?apiKey=' + API_KEY + `&addRecipeInformation=true`; //https://api.spoonacular.com/recipes/complexSearch?apiKey=07a9cf8e55824b2ebcc60aaa3b93d787&addRecipeInformation=true
+const API_RECIPES_INFO = 'https://api.spoonacular.com/recipes/complexSearch' + '?apiKey=' + API_KEY + `&number=3&addRecipeInformation=true`; //https://api.spoonacular.com/recipes/complexSearch?apiKey=07a9cf8e55824b2ebcc60aaa3b93d787&addRecipeInformation=true
 const API_INFORMATION = 'https://api.spoonacular.com/recipes/{id}/information' + '?apikey=' + API_KEY; //
 
 
