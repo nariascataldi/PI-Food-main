@@ -2,7 +2,7 @@ const { Router } = require('express');
 const axios = require('axios');
 const { Recipe, Diet } = require('../db');
 const { API_RECIPES_INFO } = require('../utils/config')
-const apiAllUtils = ('../utils/UTILS_FOOD/complexSearchInfo.json')
+
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -11,7 +11,9 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 const getApiInfo = async () => {
-  const apiUrl = await axios.get(apiAllUtils); //API_RECIPES_INFO
+  const apiUrl = await axios.get(API_RECIPES_INFO); //
+  console.log(apiUrl);
+
   const apiInfo = await apiUrl.data.results.map(elApi => {
     return {
       id: elApi.id,
