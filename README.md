@@ -168,17 +168,17 @@ Se debe desarrollar un servidor en Node/Express con las siguientes rutas:
 
 __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y paginados brindados por la API externa, todas estas funcionalidades tienen que implementarlas ustedes.
 
-- [ ] __GET /recipes?name="..."__:
+- [✔️] __GET /recipes?name="..."__:
   - Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
   - Si no existe ninguna receta mostrar un mensaje adecuado
-- [ ] __GET /recipes/{idReceta}__:
+- [✔️] __GET /recipes/{idReceta}__:
   - Obtener el detalle de una receta en particular
   - Debe traer solo los datos pedidos en la ruta de detalle de receta
   - Incluir los tipos de dieta asociados
-- [ ] __POST /recipes__:
+- [✔️] __POST /recipes__:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
   - Crea una receta en la base de datos relacionada con sus tipos de dietas.
-- [ ] __GET /diets__:
+- [✔️] __GET /diets__:
   - Obtener todos los tipos de dieta posibles
   - En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular [acá](https://spoonacular.com/food-api/docs#Diets)
 
