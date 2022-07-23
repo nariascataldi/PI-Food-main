@@ -11,10 +11,11 @@ const getApiInfo = async () => {
       id: elApi.id,
       title: elApi.title,
       summary: elApi.summary,
-      diets: elApi.diets.map(el => el),
+      creditsText: elApi.creditsText,
+      diets: elApi.diets.length ? elApi.diets : [],
       image: elApi.image,
       healthScore: elApi.healthScore,
-      analyzedInstructions: elApi.analyzedInstructions,
+      analyzedInstructions: elApi.analyzedInstructions.length ? elApi.analyzedInstructions[0].steps.map(s => s.step) : []
     }
   });
   return apiInfo;
