@@ -6,12 +6,12 @@ module.exports = (sequelize) => {
   sequelize.define('recipe', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4
     },
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     summary: {
@@ -20,24 +20,25 @@ module.exports = (sequelize) => {
     },
     healthScore: {
       type: DataTypes.INTEGER,
-      allowNull: true,
       validate: {
         min: 0,
         max: 100
-      }
+      },
+      allowNull: true
     },
     analyzedInstructions: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.JSON),
       allowNull: true
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
+      defaultValue: "https://www.euskadi.eus/contenidos/informacion/alim_sal_plato/es_def/images/plato-saludable01.PNG"
     },
     createInDb: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
+      defaultValue: true,
+      allowNull: false
     }
   });
 };

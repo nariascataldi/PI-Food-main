@@ -1,10 +1,9 @@
-const { Router } = require('express');
 const axios = require('axios');
 const { Recipe, Diet } = require('../db');
 const { API_RECIPES_INFO } = require('../utils/config');
 
 const getApiInfo = async () => {
-  const apiUrl = await axios.get(API_RECIPES_INFO); //
+  const apiUrl = await axios.get(API_RECIPES_INFO); //API_RECIPES_INFO
   console.log(apiUrl);
 
   const apiInfo = await apiUrl.data.results.map(elApi => {
