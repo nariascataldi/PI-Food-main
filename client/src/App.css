@@ -1,38 +1,144 @@
-.App {
-  text-align: center;
+body {
+  position: relative;
+  margin: 0;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 105%;
+  min-height: 100%;
+  transform: translateX(calc((100% - 100vw) / 2));
+  z-index: -2;
 }
+h1 {
+  margin: 0;
+  padding-top: 3rem;
+  padding-left: 2rem;
+}
+h2 {
+  margin: 0;
+  padding-top: 3rem;
+  padding-left: 2rem;
+}
+@keyframes spinnerAnimationRotate {
+  0% {
+    -ms-transform: rotate(0deg);
+  }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  8.332% {
+    -ms-transform: rotate(0deg);
+  }
+
+  8.333% {
+    -ms-transform: rotate(30deg);
+  }
+
+  16.666% {
+    -ms-transform: rotate(30deg);
+  }
+
+  16.667% {
+    -ms-transform: rotate(60deg);
+  }
+
+  24.999% {
+    -ms-transform: rotate(60deg);
+  }
+
+  25% {
+    -ms-transform: rotate(90deg);
+  }
+
+  33.333% {
+    -ms-transform: rotate(90deg);
+  }
+
+  33.334% {
+    -ms-transform: rotate(120deg);
+  }
+
+  41.666% {
+    -ms-transform: rotate(120deg);
+  }
+
+  41.667% {
+    -ms-transform: rotate(150deg);
+  }
+
+  49.999% {
+    -ms-transform: rotate(150deg);
+  }
+
+  50% {
+    -ms-transform: rotate(180deg);
+  }
+
+  58.333% {
+    -ms-transform: rotate(180deg);
+  }
+
+  58.334% {
+    -ms-transform: rotate(210deg);
+  }
+
+  66.666% {
+    -ms-transform: rotate(210deg);
+  }
+
+  66.667% {
+    -ms-transform: rotate(240deg);
+  }
+
+  74.999% {
+    -ms-transform: rotate(240deg);
+  }
+
+  75% {
+    -ms-transform: rotate(270deg);
+  }
+
+  83.333% {
+    -ms-transform: rotate(270deg);
+  }
+
+  83.334% {
+    -ms-transform: rotate(300deg);
+  }
+
+  91.666% {
+    -ms-transform: rotate(300deg);
+  }
+
+  91.667% {
+    -ms-transform: rotate(330deg);
+  }
+
+  99.999% {
+    -ms-transform: rotate(330deg);
+  }
+
+  100% {
+    -ms-transform: rotate(360deg);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+div#waitingIndicator {
+  position: absolute;
+  display: none;
+  visibility: visible;
+  width: 110px;
+  height: 110px;
+  background-image: url('./assets/image/waiting_bezel.png');
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+div#waitingSpinner {
+  position: absolute;
+  visibility: visible;
+  top: 27px;
+  left: 33px;
+  width: 42px;
+  height: 42px;
+  background: transparent url('./assets/image/spinner.png') no-repeat 0 0;
+  opacity: 0.75;
 }

@@ -1,40 +1,41 @@
-
-  #LandingPage {
-  padding: 15rem 7rem;
-  background: url('https://img.freepik.com/foto-gratis/condimentos-preparar-pasta-italiana_1220-429.jpg?size=626&ext=jpg&ga=GA1.2.1327031495.1656964396');
-  width: 100vw;
- 
-  background-repeat: no-repeat; 
+/* .LandingPage {
+  background-image: url("../assets/image/background-images/renacimiento-foto-horizontal.png");
+  
+  height: 400px;
+  background-repeat: no-repeat;
   background-size: cover;
-  }
- h2{
-    font-size: 40px;
-    color: #fdc96e;   
-    align-items: center;   
-  }
-  #letras {
-    display: left;     
-    border-top-left-radius: 30px;
-    justify-content: center;     
-    align-items: center;    
-    height:10vh;
-    font-family: 'Roboto', sans-serif;
-    font-size: 70px;
-    color: #ffdead;    
-  }
-  #button {
-    background-color: #f4a927;
-    padding: 1.2rem 1.4rem;
-    color: #f8f8f8;
-    border-radius: 4.9rem;
-    border: none;
-    font-weight: 800;
-    cursor: pointer;
-    font-size: 1.3rem;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    justify-content: left;
-  }
-  #button button:hover {   
-    transform: scale(2);
-  }
+  background-position: center center;
+} */
+
+h1 {
+  font-size: 40px;
+  color: #804000;
+  font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif, 'Roboto', sans-serif;
+}
+
+.letras {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  text-align: center;
+  text-align-last: auto;
+  width: auto;
+}
+
+.button {
+  background-color: #f4a927;
+  padding: 1.2rem 1.4rem;
+  color: #f8f8f8;
+  border-radius: 4.9rem;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  justify-content: left;
+}
+
+.button button:hover {
+  transform: scale(2);
+}
