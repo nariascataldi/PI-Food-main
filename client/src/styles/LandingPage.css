@@ -28,12 +28,12 @@ body {
 button {
   background-color: rgba(210, 105, 30, 0.03);
   border:none;
-  margin-top: 33vw;
+  margin-top: 32vw;
   color: #11d3c9;
   font-weight: 800;
   cursor: pointer;
   font-size: 6vw;
-  font-family: 'Snell Roundhand', 'Zapfino', 'SignPainter';
+  font-family: 'Snell Roundhand', 'Zapfino', 'SignPainter', Arial, Helvetica, sans-serif;
   /* text-transform: uppercase; */
   transition: all 0.3s;
 }
