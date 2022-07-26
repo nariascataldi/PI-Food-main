@@ -25,7 +25,7 @@ body {
   justify-content: center;
 }
 
-button {
+.button {
   background-color: rgba(210, 105, 30, 0.03);
   border:none;
   margin-top: 32vw;
@@ -38,6 +38,6 @@ button {
   transition: all 0.3s;
 }
 
-button:hover {
+.button:hover {
   transform: scale(1.5);
 }

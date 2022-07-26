@@ -1,5 +1,7 @@
 import axios from "axios";
-import URL_BACKEND from '../utils/config'
+
+const BACKEND_PORT = 3001;
+const URL_BACKEND = `http://localhost:${BACKEND_PORT}/recipes`;
 
 export function getRecipes() {
   return async function(dispatch) {
