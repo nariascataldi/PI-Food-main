@@ -1,41 +1,43 @@
-/* .LandingPage {
-  background-image: url("../assets/image/background-images/renacimiento-foto-horizontal.png");
-  
-  height: 400px;
-  background-repeat: no-repeat;
+body {
+  background-image: url(../assets/image/wooden.jpeg);
   background-size: cover;
-  background-position: center center;
-} */
-
-h1 {
-  font-size: 40px;
-  color: #804000;
-  font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif, 'Roboto', sans-serif;
+  background-repeat: no-repeat;
+  background-color: red;
 }
 
-.letras {
+/* Pantallas de menos de 1180px de ancho */
+@media screen and (max-width: 1180px) {
+  body {
+    background-color: black;
+  }
+}
+
+/* Pantallas de menos de 500px de ancho */
+@media screen and (max-width: 500px) {
+  body {
+    background-image: url(../assets/image/wooden-cutting.png);
+    background-color: black;
+  }
+}
+
+.home {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  text-align: center;
-  text-align-last: auto;
-  width: auto;
+  justify-content: center;
 }
 
-.button {
-  background-color: #f4a927;
-  padding: 1.2rem 1.4rem;
-  color: #f8f8f8;
-  border-radius: 4.9rem;
-  border: none;
+button {
+  background-color: rgba(210, 105, 30, 0.03);
+  border:none;
+  margin-top: 33vw;
+  color: #11d3c9;
   font-weight: 800;
   cursor: pointer;
-  font-size: 20px;
-  text-transform: uppercase;
+  font-size: 6vw;
+  font-family: 'Snell Roundhand', 'Zapfino', 'SignPainter';
+  /* text-transform: uppercase; */
   transition: all 0.3s;
-  justify-content: left;
 }
 
-.button button:hover {
-  transform: scale(2);
+button:hover {
+  transform: scale(1.5);
 }
