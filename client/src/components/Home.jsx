@@ -17,7 +17,7 @@ export default function Home() {
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
   
-  const paginado = (pageNumber) => {
+  const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
   };
 
