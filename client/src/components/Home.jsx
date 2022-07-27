@@ -30,6 +30,10 @@ export default function Home() {
     e.preventDefault();
     dispatch(getRecipes());
   }
+  function handleFilterTypes(e) {
+    dispatch(filterRecipesByType(e.target.value))
+    setCurrentPage(1)
+  }
 
   return (
     <div>
@@ -52,8 +56,7 @@ export default function Home() {
             <option value='vid'>Creados</option>
             <option value='vid'>Existente</option>
           </select>
-          <select >
-            <option value=''>FILTER BY DIETS</option>
+          <select onChange={e => handleFilterTypes(e)}>
             <option value='All'>All</option>
             <option value='gluten free'>Gluten Free</option>
             <option value='dairy free'>Dairy Free</option>
@@ -96,10 +99,10 @@ Ruta principal: debe contener
 
 [ ] Input de búsqueda para encontrar recetas por nombre
 [ ] Área donde se verá el listado de recetas. Deberá mostrar su:
-Imagen
-Nombre
-Tipo de dieta (vegetariano, vegano, apto celíaco, etc)
+    Imagen
+    Nombre
+    Tipo de dieta (vegetariano, vegano, apto celíaco, etc)
 [ ] Botones/Opciones para filtrar por por tipo de dieta
 [ ] Botones/Opciones para ordenar tanto ascendentemente como descendentemente las recetas por orden alfabético y por health score (nivel de comida saludable).
-[ ] Paginado para ir buscando y mostrando las siguientes recetas, 9 recetas por pagina, mostrando las primeros 9 en la primer pagina.
+[✔️] Paginado para ir buscando y mostrando las siguientes recetas, 9 recetas por pagina, mostrando las primeros 9 en la primer pagina.
  */
