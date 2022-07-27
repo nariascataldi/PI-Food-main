@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../actions";
+import { getRecipes, filterRecipesByType, orderByName } from "../actions";
 import { Link } from "react-router-dom";
 import Cards from "./Card";
 import Paginate from "./Paginate";
@@ -17,10 +17,10 @@ export default function Home() {
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
-
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
   };
+  const [sort, setSort] = useState('');
 
   useEffect(() => {
     dispatch(getRecipes())
@@ -33,6 +33,12 @@ export default function Home() {
   function handleFilterTypes(e) {
     dispatch(filterRecipesByType(e.target.value))
     setCurrentPage(1)
+  }
+  function handleSort(e) {
+    e.preventDefault()
+    dispatch(orderByName(e.target.value))
+    setCurrentPage(1)
+    setSort(`Ordenado ${e.target.value}`)
   }
 
   return (
@@ -47,14 +53,9 @@ export default function Home() {
         </Link>
         <button onClick={e => { handleClick(e) }}>Volver a cargar las recetas</button>
         <div>
-          <select>
+          <select onChange={e => handleSort(e)}>
             <option value='asc'>Ascendente</option>
             <option value='des'>Descendente</option>
-          </select>
-          <select>
-            <option value='gen'>Todos</option>
-            <option value='vid'>Creados</option>
-            <option value='vid'>Existente</option>
           </select>
           <select onChange={e => handleFilterTypes(e)}>
             <option value='All'>All</option>
