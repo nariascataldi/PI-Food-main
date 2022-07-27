@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles/Paginate.css'
 
 export default function Paginate({ recipesPerPage, allRecipes, paginate }) {
   const pageNumber = [];

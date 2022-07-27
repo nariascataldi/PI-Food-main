@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipes } from "../actions";
 import { Link } from "react-router-dom";
 import Cards from "./Card";
-import "../styles/Home.css"
+import Paginate from "./Paginate";
+import "../styles/Home.css";
 
 
 //hook
@@ -16,7 +17,7 @@ export default function Home() {
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
-  
+
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
   };
@@ -38,7 +39,7 @@ export default function Home() {
         </div>
         <h1>Recetas</h1>
         <Link to='/recipe'>
-        <button className='bCrear' id='hC'>Crear receta</button>
+          <button className='bCrear' id='hC'>Crear receta</button>
         </Link>
         <button onClick={e => { handleClick(e) }}>Volver a cargar las recetas</button>
         <div>
@@ -67,20 +68,24 @@ export default function Home() {
             <option value='ketogenic'>Ketogenic</option>
           </select>
         </div>
-        {
-          allRecipes?.map((card) => {
-            return (
-              <Fragment>
-                <Link to={"/home/" + card.id}>
-                  <Cards
-                    title={card.title}
-                    image={card.image ? card.image : <img src='https://i.pinimg.com/originals/66/88/f8/6688f8dc71df44c68bd0cf0eb1f5ee8c.jpg' alt="Imagen no encontrada" />}
-                    creditsText={card.creditsText}
-                    key={card.id} />
-                </Link>
-              </Fragment>
-            )
-          })
+        <Paginate
+          recipesPerPage={recipesPerPage}
+          allRecipes={allRecipes.length}
+          paginate={paginate}
+        />
+        {currentRecipes?.map((card) => {
+          return (
+            <Fragment>
+              <Link to={"/home/" + card.id}>
+                <Cards
+                  title={card.title}
+                  image={card.image ? card.image : <img src='https://i.pinimg.com/originals/66/88/f8/6688f8dc71df44c68bd0cf0eb1f5ee8c.jpg' alt="Imagen no encontrada" />}
+                  creditsText={card.creditsText}
+                  key={card.id} />
+              </Link>
+            </Fragment>
+          )
+        })
         }
       </div>
     </div>
