@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Card({ title, image, creditsText }) {
+export default function Cards({ title, image, creditsText }) {
   return (
     <div>
       <h3>{title}</h3>

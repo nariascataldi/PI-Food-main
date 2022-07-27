@@ -1,5 +1,5 @@
 body {
-  background-image: url(../assets/image/wooden.jpeg);
+  background-image: url(../assets/image/background-images/LandingPage/wooden.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
   background-color: red;
@@ -15,7 +15,7 @@ body {
 /* Pantallas de menos de 500px de ancho */
 @media screen and (max-width: 500px) {
   body {
-    background-image: url(../assets/image/wooden-cutting.png);
+    background-image: url(../assets/image/background-images/LandingPage/wooden-cutting.png);
     background-color: black;
   }
 }

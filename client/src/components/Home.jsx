@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipes } from "../actions";
 import { Link } from "react-router-dom";
-import Card from "./Card";
+import Cards from "./Card";
+import "../styles/Home.css"
 
 const PUMA = 'https://i.pinimg.com/originals/66/88/f8/6688f8dc71df44c68bd0cf0eb1f5ee8c.jpg';
 
@@ -22,7 +23,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="bodyHome">
       <Link to='/recipe'>Crear receta</Link>
       <h1>Aguante SALTA la linda</h1>
       <button onClick={e => { handleClick(e) }}>Volver a cargar las recetas</button>
@@ -49,7 +50,11 @@ export default function Home() {
             return (
               <Fragment>
                 <Link to={"/home/" + r.id}>
-                  <Card title={r.title} image={r.image ? r.image : <img src={PUMA} alt="Imagen no encontrada" />} creditsText={r.creditsText} key={r.id} />
+                  <Cards
+                    title={r.title}
+                    image={r.image ? r.image : <img src={PUMA} alt="Imagen no encontrada" />}
+                    creditsText={r.creditsText}
+                    key={r.id} />
                 </Link>
               </Fragment>
             )

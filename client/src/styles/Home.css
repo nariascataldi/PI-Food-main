@@ -1,0 +1,26 @@
+.bodyHome {
+  background-image: url(../assets/image/background-images/Home/background.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: red;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+  height: 270vh;
+}
+
+/* Pantallas de menos de 1180px de ancho */
+@media screen and (max-width: 1180px) {
+  .bodyHome {
+    background-color: black;
+  }
+}
+
+/* Pantallas de menos de 500px de ancho */
+@media screen and (max-width: 500px) {
+  .bodyHome {
+    background-image: url(../assets/image/background-images/LandingPage/wooden-cutting.png);
+    background-color: black;
+    background-repeat: no-repeat;
+  }
+}
