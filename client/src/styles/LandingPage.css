@@ -1,24 +1,10 @@
-body {
+.LandingPage {
   background-image: url(../assets/image/background-images/LandingPage/wooden.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
   background-color: red;
 }
 
-/* Pantallas de menos de 1180px de ancho */
-@media screen and (max-width: 1180px) {
-  body {
-    background-color: black;
-  }
-}
-
-/* Pantallas de menos de 500px de ancho */
-@media screen and (max-width: 500px) {
-  body {
-    background-image: url(../assets/image/background-images/LandingPage/wooden-cutting.png);
-    background-color: black;
-  }
-}
 
 .home {
   display: flex;
@@ -27,17 +13,35 @@ body {
 
 .button {
   background-color: rgba(210, 105, 30, 0.03);
-  border:none;
-  margin-top: 32vw;
+  border: none;
+  margin: 25vw;
   color: #11d3c9;
   font-weight: 800;
   cursor: pointer;
   font-size: 6vw;
   font-family: 'Snell Roundhand', 'Zapfino', 'SignPainter', Arial, Helvetica, sans-serif;
-  /* text-transform: uppercase; */
   transition: all 0.3s;
 }
 
+/* Pantallas de menos de 1180px de ancho */
+@media screen and (max-width: 1180px) {
+  .LandingPage {
+    background-color: black;
+  }
+}
+
+/* Pantallas de menos de 500px de ancho */
+@media screen and (max-width: 500px) {
+  .LandingPage {
+    background-image: url(../assets/image/background-images/LandingPage/wooden-cutting.png);
+    background-color: black;
+  }
+  .button{
+    font-size: 11vw;
+    margin: 67vw;
+    padding: 20 px;
+  }
+}
 .button:hover {
   transform: scale(1.5);
 }

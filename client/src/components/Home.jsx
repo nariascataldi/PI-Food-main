@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 import Cards from "./Card";
 import "../styles/Home.css"
 
-const PUMA = 'https://i.pinimg.com/originals/66/88/f8/6688f8dc71df44c68bd0cf0eb1f5ee8c.jpg';
 
 //hook
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recipesPerPage, setRecipesPerPage] = useState(9);
 
   useEffect(() => {
     dispatch(getRecipes())
@@ -23,46 +24,58 @@ export default function Home() {
   }
 
   return (
-    <div className="bodyHome">
-      <Link to='/recipe'>Crear receta</Link>
-      <h1>Aguante SALTA la linda</h1>
-      <button onClick={e => { handleClick(e) }}>Volver a cargar las recetas</button>
-      <div>
-        {/* aquí entrarían los filtros */}
-        <select>
-          <option value='asc'>Ascendente</option>
-          <option value='des'>Descendente</option>
-        </select>
-        <select>
-          <option value='gen'>Todos</option>
-          <option value='vid'>Creados</option>
-          <option value='vid'>Existente</option>
-        </select>
-        <select>
-          <option value="All">Todos</option>
-          <option value="Alive">Vivo</option>
-          <option value="Deceased">Muerto</option>
-          <option value="Unknown">Desconocido</option>
-          <option value="Presumed dead">Probablemente muerto</option>
-        </select>
+    <div>
+      <div className="bodyHome">
+        <div className="ingred">
+          <h1>Hola</h1>
+        </div>
+        <h1>Recetas</h1>
+        <Link to='/recipe'>
+        <button className='bCrear' id='hC'>Crear receta</button>
+        </Link>
+        <button onClick={e => { handleClick(e) }}>Volver a cargar las recetas</button>
+        <div>
+          <select>
+            <option value='asc'>Ascendente</option>
+            <option value='des'>Descendente</option>
+          </select>
+          <select>
+            <option value='gen'>Todos</option>
+            <option value='vid'>Creados</option>
+            <option value='vid'>Existente</option>
+          </select>
+          <select >
+            <option value=''>FILTER BY DIETS</option>
+            <option value='All'>All</option>
+            <option value='gluten free'>Gluten Free</option>
+            <option value='dairy free'>Dairy Free</option>
+            <option value='vegan'>Vegan</option>
+            <option value='lacto ovo vegetarian'>Lacto-Ovo Vegetarian</option>
+            <option value='pescatarian'>Pescatarian</option>
+            <option value='paleolithic'>Paleolithic</option>
+            <option value='primal'>Primal</option>
+            <option value='fodmap friendly'>Low FODMAP</option>
+            <option value='whole 30'>Whole30</option>
+            <option value='vegetarian'>Vegeterian</option>
+            <option value='ketogenic'>Ketogenic</option>
+          </select>
+        </div>
         {
-          allRecipes?.map((r) => {
+          allRecipes?.map((card) => {
             return (
               <Fragment>
-                <Link to={"/home/" + r.id}>
+                <Link to={"/home/" + card.id}>
                   <Cards
-                    title={r.title}
-                    image={r.image ? r.image : <img src={PUMA} alt="Imagen no encontrada" />}
-                    creditsText={r.creditsText}
-                    key={r.id} />
+                    title={card.title}
+                    image={card.image ? card.image : <img src='https://i.pinimg.com/originals/66/88/f8/6688f8dc71df44c68bd0cf0eb1f5ee8c.jpg' alt="Imagen no encontrada" />}
+                    creditsText={card.creditsText}
+                    key={card.id} />
                 </Link>
               </Fragment>
             )
           })
         }
-
       </div>
-
     </div>
   )
 }

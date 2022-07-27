@@ -1,6 +1,6 @@
 body {
   position: relative;
-  margin: 0;
+  margin: none;
 }
 @keyframes spinnerAnimationRotate {
   0% {

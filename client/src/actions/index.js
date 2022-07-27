@@ -1,14 +1,11 @@
 import axios from "axios";
 
-const BACKEND_PORT = 3001;
-const URL_BACKEND = `http://localhost:${BACKEND_PORT}/recipes`;
-
 export function getRecipes() {
-  return async function(dispatch) {
-    var json = await axios.get(URL_BACKEND);
+  return async function (dispatch) {
+    var json = await axios('http://localhost:3001/recipes');
     return dispatch({
-      type: 'GET_CHARACTERS',
+      type: 'GET_RECIPES',
       payload: json.data
     })
- }
+  }
 }
