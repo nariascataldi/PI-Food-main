@@ -11,8 +11,7 @@ export default function Paginate({ recipesPerPage, allRecipes, paginate }) {
     <ul className="paginado">
       {pageNumber?.map(number =>(
         <li className="number" key={number}>
-          <a onClick={()=> paginate(number)}>{number}</a>
-        </li>
+        <button className='button' id='button' onClick={() => paginate(number)}>{number}</button>        </li>
       ))}
     </ul>
   </nav>
