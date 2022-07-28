@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, filterRecipesByType, orderByName } from "../actions";
+import { getRecipes } from "../actions"; // , filterRecipesByType, orderByName
 import { Link } from "react-router-dom";
 import Cards from "./Card";
 import Paginate from "./Paginate";
@@ -30,16 +30,16 @@ export default function Home() {
     e.preventDefault();
     dispatch(getRecipes());
   }
-  function handleFilterTypes(e) {
-    dispatch(filterRecipesByType(e.target.value))
-    setCurrentPage(1)
-  }
-  function handleSort(e) {
-    e.preventDefault()
-    dispatch(orderByName(e.target.value))
-    setCurrentPage(1)
-    setSort(`Ordenado ${e.target.value}`)
-  }
+  // function handleFilterTypes(e) {
+  //   dispatch(filterRecipesByType(e.target.value))
+  //   setCurrentPage(1)
+  // }
+  // function handleSort(e) {
+  //   e.preventDefault()
+  //   dispatch(orderByName(e.target.value))
+  //   setCurrentPage(1)
+  //   setSort(`Ordenado ${e.target.value}`)
+  // }
 
   return (
     <div>
@@ -52,12 +52,12 @@ export default function Home() {
           <button className='bCrear' id='hC'>Crear receta</button>
         </Link>
         <button onClick={e => { handleClick(e) }}>Volver a cargar las recetas</button>
-        <div>
-          <select onChange={e => handleSort(e)}>
+        {/* <div>
+          <select onChange={e => handleSort(e)} key='sort'>
             <option value='asc'>Ascendente</option>
             <option value='des'>Descendente</option>
           </select>
-          <select onChange={e => handleFilterTypes(e)}>
+          <select onChange={e => handleFilterTypes(e)} key='types'>
             <option value='All'>All</option>
             <option value='gluten free'>Gluten Free</option>
             <option value='dairy free'>Dairy Free</option>
@@ -71,26 +71,27 @@ export default function Home() {
             <option value='vegetarian'>Vegeterian</option>
             <option value='ketogenic'>Ketogenic</option>
           </select>
-        </div>
+        </div> */}
         <Paginate
           recipesPerPage={recipesPerPage}
           allRecipes={allRecipes.length}
           paginate={paginate}
         />
-        {currentRecipes?.map((card) => {
-          return (
-            <Fragment>
-              <Link to={"/home/" + card.id}>
+        <div className='cardsGrid'>
+          {currentRecipes?.map((card) => {
+            return (
                 <Cards
+                  diet={card.diets}
+                  id={card.id}
+                  key={card.id}
                   title={card.title}
                   image={card.image ? card.image : <img src='https://i.pinimg.com/originals/66/88/f8/6688f8dc71df44c68bd0cf0eb1f5ee8c.jpg' alt="Imagen no encontrada" />}
-                  creditsText={card.creditsText}
-                  key={card.id} />
-              </Link>
-            </Fragment>
-          )
-        })
-        }
+                // creditsText={card.creditsText}
+                />
+            )
+          })
+          }
+        </div>
       </div>
     </div>
   )
