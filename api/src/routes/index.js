@@ -48,7 +48,8 @@ router.post('/recipes', async (req, res) => {
         image,
         createInDb,
         diet,
-        creditsText
+        creditsText,
+        // TODO: agregar los booleanos
     } = req.body;
     const recipeCreated = await Recipe.create({
         title,
@@ -64,17 +65,18 @@ router.post('/recipes', async (req, res) => {
     recipeCreated.addDiet(dietDb);
     res.send('Receta creada con éxito')
 });
-router.get('/diets', async (req, res) => {
-    const dietsApi = await axios.get(API_RECIPES_INFO);
-    const diets = dietsApi.data.results.flatMap(d => d.diets);
 
-    diets.forEach((t) => {
-        Diet.findOrCreate({
-            where: { title: t }
-        })
-    });
-    const allDiets = await Diet.findAll()
-    res.send(allDiets)
+//modifico destructuring
+
+router.get('/types', async (req, res) => {
+    try {
+        const diets = await Diet.findAll();
+        diets.length ?
+            res.send(diets) :
+            res.send('error al traer dietas');
+    } catch (error) {
+        console.log(error);
+    }
 })
 module.exports = router;
 
@@ -84,86 +86,23 @@ module.exports = router;
     "title":"Anchi, a base de sémola de maíz amarilla",
     "summary":"Es una receta tradicional en Salta riquísimo y muy sana",
     "healthScore":100,
-    "analyzedInstructions":
-    [
-            {
-                "name": "",
-                "steps": [
-                    {
-                        "number": 1,
-                        "step": "Remove the cauliflower's tough stem and reserve for another use. Using a food processor, pulse cauliflower florets until they resemble rice or couscous. You should end up with around four cups of \"cauliflower rice.\"",
-                        "ingredients": [
-                            {
-                                "id": 10011135,
-                                "name": "cauliflower florets",
-                                "localizedName": "cauliflower florets",
-                                "image": "cauliflower.jpg"
-                            },
-                            {
-                                "id": 10111135,
-                                "name": "cauliflower rice",
-                                "localizedName": "cauliflower rice",
-                                "image": "cauliflower.jpg"
-                            },
-                            {
-                                "id": 11135,
-                                "name": "cauliflower",
-                                "localizedName": "cauliflower",
-                                "image": "cauliflower.jpg"
-                            },
-                            {
-                                "id": 20028,
-                                "name": "couscous",
-                                "localizedName": "couscous",
-                                "image": "couscous-cooked.jpg"
-                            },
-                            {
-                                "id": 20444,
-                                "name": "rice",
-                                "localizedName": "rice",
-                                "image": "uncooked-white-rice.png"
-                            }
-                        ],
-                        "equipment": [
-                            {
-                                "id": 404771,
-                                "name": "food processor",
-                                "localizedName": "food processor",
-                                "image": "food-processor.png"
-                            }
-                        ]
-                    },
-                    {
-                        "number": 2,
-                        "step": "Heat 1T butter and 1T oil in a large skillet over medium heat.",
-                        "ingredients": [
-                            {
-                                "id": 1001,
-                                "name": "butter",
-                                "localizedName": "butter",
-                                "image": "butter-sliced.jpg"
-                            },
-                            {
-                                "id": 4582,
-                                "name": "cooking oil",
-                                "localizedName": "cooking oil",
-                                "image": "vegetable-oil.jpg"
-                            }
-                        ],
-                        "equipment": [
-                            {
-                                "id": 404645,
-                                "name": "frying pan",
-                                "localizedName": "frying pan",
-                                "image": "pan.png"
-                            }
-                        ]
-                    }
-                ]
-            }
-    ]
-,
+    "analyzedInstructions":[
+            "In a small mixing bowl or blender, combine all of the ingredients for the balsamic marinade except for the lemon juice (balsamic vinegar, apple cider vinegar, 1 tbsp grapeseed oil, honey, dried dill, herbs de provence, salt and pepper).",
+            "Whisk or blend until oil and vinegar are well incorporated and no longer separate.",
+            "Place salmon fillet in a baking dish (I use a small casserole dish).",
+            "Pour the marinade over the salmon and allow it to marinate for at least 15 minutes (or up to 24 hours covered in the refrigerator).  Turn your oven on high broil. Just before putting the salmon in the oven, drizzle the lemon juice over the fish.",
+            "Bake for 10 to 12 minutes on the top rack or until salmon is glazed, browned and sizzling.While the salmon is baking, prepare the asparagus.  Wash the asparagus and cut off the bottom inch and a half of each stalk and discard.",
+            "Spread the asparagus on in a large skillet.",
+            "Drizzle the grapeseed oil over the asparagus and spread the oil on the asparagus with your hands so that all stalks are completely coated.",
+            "Sprinkle asparagus with desired amount of salt and pepper.",
+            "Saute over medium heat for 5 minutes.",
+            "Add the two tablespoons of vegetable stock and cover the skillet.",
+            "Saute 4 minutes.",
+            "Remove lid and add the minced garlic.",
+            "Place cover back over the asparagus. Continue cooking an additional 3 to 5 minutes until asparagus is cooked but not too soft.  Grate lemon zest over the top of the asparagus."
+        ],
     "image": "https://img-global.cpcdn.com/recipes/798fa31743163a73/1280x1280sq70/photo.webp",
-    "diet": "vegetarian, vegan, gluten free, fodmap friendly"
-},
+    "diet": "vegetarian, vegan, gluten free, fodmap friendly",
+    "creditsText": "Abuela Emilia"
+}
  */

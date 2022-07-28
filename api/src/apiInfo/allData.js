@@ -11,10 +11,20 @@ const getApiInfo = async () => {
       title: elApi.title,
       summary: elApi.summary,
       creditsText: elApi.creditsText,
-      diets: elApi.diets.length ? elApi.diets : [],
+      diets: elApi.diets.length ? elApi.diets[title].map(d => d.title) : [],
       image: elApi.image,
       healthScore: elApi.healthScore,
-      analyzedInstructions: elApi.analyzedInstructions.length ? elApi.analyzedInstructions[0].steps.map(s => s.step) : []
+      analyzedInstructions: elApi.analyzedInstructions.length ? elApi.analyzedInstructions[0].steps.map(s => s.step) : [],
+
+      vegetarian: elApi.vegetarian,
+      vegan: elApi.vegan,
+      glutenFree: elApi.glutenFree,
+      dairyFree: elApi.dairyFree,
+      veryHealthy: elApi.veryHealthy,
+      cheap: elApi.cheap,
+      veryPopular: elApi.veryPopular,
+      sustainable: elApi.sustainable,
+      lowFodmap: elApi.lowFodmap
     }
   });
   return apiInfo;
@@ -37,10 +47,28 @@ const getAllRecipes = async () => {
   const infoTotal = apiInfo.concat(dbInfo);
   return infoTotal;
 }
+const allDiets = async function(){
+  const dietsApi = await axios.get(API_RECIPES_INFO);
+  const dietsListR = dietsApi.data.results.flatMap(d => d.diets);
+
+  return [... new Set(dietsListR)]
+};
 
 module.exports = {
   getApiInfo,
   getDbInfo,
   getAllRecipes,
-  // getAllDiets
+  allDiets
 };
+
+/* para algún filtrado
+vegetarian
+vegan
+glutenFree
+dairyFree
+veryHealthy
+cheap	
+veryPopular
+sustainable
+lowFodmap	
+ */
