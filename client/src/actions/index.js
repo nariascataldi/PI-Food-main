@@ -18,24 +18,24 @@ export function getRecipes() {
     })
   }
 }
-// export function getRecipesTitle(title) {
-//   return async function (dispatch) {
-//       var json = await axios.get('/recipe?title=' + title);
-//       return dispatch({
-//           type: 'GET_RECIPES_Title',
-//           payload: json.data
-//       })
-//   }
-// };
-// export function filterRecipesByType(payload) {
-//   return {
-//       type: 'FILTER_BY_TYPES',
-//       payload
-//   }
-// }
-// export function orderByName(payload) {
-//   return {
-//       type: 'ORDER_BY_NAME',
-//       payload,
-//   }
-// }
+export function getRecipesTitle(title) {
+  return async function (dispatch) {
+      var json = await axios.get('/recipe?title=' + title);
+      return dispatch({
+          type: 'GET_RECIPES_Title',
+          payload: json.data
+      })
+  }
+};
+export function filterRecipesByType(payload) {
+  return {
+      type: 'FILTER_BY_TYPES',
+      payload
+  }
+}
+export function orderByName(payload) {
+  return {
+      type: 'ORDER_BY_NAME',
+      payload,
+  }
+}

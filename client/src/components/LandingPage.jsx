@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../styles/LandingPage.css';
+import styles from './LandingPage.module.css';
 
 
 function LandingPage() {
@@ -15,11 +15,11 @@ function LandingPage() {
 //   setTimeout(saludos, 3000);
   
   return (
-    <div className='LandingPage'>
-      <div className="Tabla">
-        <div className="home">
+    <div className={styles.LandingPage}>
+      <div className={styles.Tabla}>
+        <div className={styles.home}>
           <Link to='/home'>
-            <button className='button' id='button'>Recetas</button>
+            <button className={styles.button} id='button'>Recetas</button>
           </Link>
 
         </div>

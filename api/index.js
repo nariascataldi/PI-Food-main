@@ -28,7 +28,7 @@ const dietLoader = async function () {
 }
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
     dietLoader()
     console.log(`It's listening at ${BACKEND_PORT}, recuerda setear el force a true`); // eslint-disable-line no-console
