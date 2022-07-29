@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const GET_RECIPES = 'GET_RECIPES'
+export const GET_RECIPES = 'GET_RECIPES'                  //CARDS
 // export const GET_DIETS = 'GET_DIETS'
-// export const FILTER_BY_DIETS = 'FILTER_BY_DIETS'
-// export const ORDER_BY_NAME = 'ORDER_BY_NAME'
-// export const SEARCH_BY_NAME = 'SEARCH_BY_NAME'
+export const FILTER_BY_TYPES = 'FILTER_BY_TYPES'
+export const ORDER_BY_NAME = 'ORDER_BY_NAME'
+export const GET_RECIPES_TITLE = 'GET_RECIPES_TITLE'      //SEARCH
 // export const POST_RECIPE = 'POST_RECIPE'
 // export const ORDER_BY_SCORE = 'ORDER_BY_SCORE'
 // export const RECIPE_DETAIL = 'RECIPE_DETAIL'
@@ -20,22 +20,26 @@ export function getRecipes() {
 }
 export function getRecipesTitle(title) {
   return async function (dispatch) {
-      var json = await axios.get('/recipe?title=' + title);
+    try {
+      var json = await axios.get('http://localhost:3001/recipes?title=' + title);
       return dispatch({
-          type: 'GET_RECIPES_Title',
-          payload: json.data
+        type: GET_RECIPES_TITLE,
+        payload: json.data
       })
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 export function filterRecipesByType(payload) {
   return {
-      type: 'FILTER_BY_TYPES',
-      payload
+    type: FILTER_BY_TYPES,
+    payload
   }
 }
 export function orderByName(payload) {
   return {
-      type: 'ORDER_BY_NAME',
-      payload,
+    type: ORDER_BY_NAME,
+    payload,
   }
 }
