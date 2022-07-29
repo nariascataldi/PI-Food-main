@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const GET_RECIPES = 'GET_RECIPES'                  //CARDS
+export const FILTER_TYPES_FI = 'FILTER_TYPES_FI'
 export const FILTER_BY_TYPES = 'FILTER_BY_TYPES'
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'
 export const GET_RECIPES_TITLE = 'GET_RECIPES_TITLE'      //SEARCH
@@ -30,6 +31,12 @@ export function getRecipesTitle(title) {
     }
   }
 };
+export function filterRecipesByTypeFi(payload) {
+  return {
+    type: FILTER_TYPES_FI,
+    payload
+  }
+}
 export function filterRecipesByType(payload) {
   return {
     type: FILTER_BY_TYPES,
@@ -56,14 +63,14 @@ export function getDiets() {
   }
 }
 export function postRecipe(payload) {
-  return async function (dispatch) {
+  return async function () {
     const response = await axios.post('http://localhost:3001/recipes', payload);
     return response;
   }
 }
 export function recipeDetail(id){
   return async function(dispatch){
-      let json = await axios.get('/recipes/' + id)
+      let json = await axios.get('http://localhost:3001/recipes/' + id)
       return dispatch({ 
         type: RECIPE_DETAIL, 
         payload: json.data

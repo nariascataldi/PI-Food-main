@@ -6,7 +6,7 @@
 //                       
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const {Diet, conn } = require('./src/db.js');
+const { Diet, conn } = require('./src/db.js');
 const { BACKEND_PORT } = require('./src/utils/config/index.js');
 const model = require('./src/apiInfo/allData');
 
@@ -26,11 +26,15 @@ const dietLoader = async function () {
     console.log(error)
   }
 }
-
+var boolean = true;
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: boolean }).then(() => {
   server.listen(3001, () => {
     dietLoader()
-    console.log(`It's listening at ${BACKEND_PORT}, recuerda setear el force a true`); // eslint-disable-line no-console
+    if (!boolean) {
+      console.log(`It's listening at ${BACKEND_PORT}, recuerda setear el force a true y aumentar las peticiones a 100 de recetas`); // eslint-disable-line no-console
+    } else {
+      console.log(`Running at ${BACKEND_PORT}`)
+    }
   });
 });

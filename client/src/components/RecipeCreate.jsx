@@ -68,18 +68,6 @@ export default function RecipeCreate() {
     }
   };
 
-  function handleSelectDiets(e) {
-    if (!post.diets.includes(e.target.value))
-      setPost({
-        ...post,
-        diets: [...post.diets, e.target.value]
-      });
-    setErrors(validate({
-      ...post,
-      diets: [...post.diets, e.target.value]
-    }));
-  };
-
   function handleSteps(e) {
     setPost({
       ...post,
@@ -91,6 +79,18 @@ export default function RecipeCreate() {
     }));
   }
 
+  function handleSelectDiets(e) {
+    if (!post.diets.includes(e.target.value))
+      setPost({
+        ...post,
+        diets: [...post.diets, e.target.value]
+      });
+    setErrors(validate({
+      ...post,
+      diets: [...post.diets, e.target.value]
+    }));
+  };
+  
   function handleDietDelete(diet) {
     setPost({
       ...post,
@@ -112,53 +112,54 @@ export default function RecipeCreate() {
           <form onSubmit={e => handleSubmit(e)}>
             <div>
               <label>🏷 Title</label>
-              <input type="text" value={post.title} name='title' onChange={e => handleInputChange(e)} />
+              <input type="text" value={post.title} key='title' name='title' onChange={e => handleInputChange(e)} />
               {errors.title && (
                 <p>{errors.title}</p>
               )}
             </div>
             <div>
               <label>📝 Summary</label>
-              <textarea value={post.summary} name='summary' onChange={e => handleInputChange(e)} />
+              <textarea value={post.summary} key='summary' name='summary' onChange={e => handleInputChange(e)} />
               {errors.summary && (
                 <p>{errors.summary}</p>
               )}
             </div>
             <div>
               <label>👏👏👏 Applause for</label>
-              <textarea value={post.creditsText} name='creditsText' onChange={e => handleInputChange(e)} />
+              <textarea value={post.creditsText} key='creditsText' name='creditsText' onChange={e => handleInputChange(e)} />
               {errors.creditsText && (
                 <p>{errors.creditsText}</p>
               )}
             </div>
             <div>
               <label>❤️ Health Score</label>
-              <input type="number" min="0" max='100' value={post.healthScore} name='healthScore' onChange={e => handleInputChange(e)} />
+              <input type="number" min="0" max='100' value={post.healthScore} key='healthScore' name='healthScore' onChange={e => handleInputChange(e)} />
               {errors.healthScore && (
                 <p>{errors.healthScore}</p>
               )}
             </div>
             <div>
               <label>📷 Image</label>
-              <input type="text" value={post.image} name='image' onChange={e => handleInputChange(e)} />
+              <input type="text" value={post.image} key='image' name='image' onChange={e => handleInputChange(e)} />
               {errors.image && (
                 <p>{errors.image}</p>
               )}
             </div>
             <div>
               <label>💃🕺 Instructions</label>
-              <textarea value={post.analyzedInstructions} name='analyzedInstructions' onChange={e => handleSteps(e)} />
+              <textarea value={post.analyzedInstructions} key='analyzedInstructions' name='analyzedInstructions' onChange={e => handleSteps(e)} />
               {errors.analyzedInstructions && (
                 <p>{errors.analyzedInstructions}</p>
               )}
             </div>
+  {/* --------------------TODO: EN EL HOME ------------------*/}
             <div>
               <select onChange={e => handleSelectDiets(e)} defaultValue='default'
                 className={styles.dietSelect}>
                 <option value="default" disabled className={styles.dietOption}>Choose diets</option>
                 {
                   diets && diets.map(d => (
-                    <option value={d.name} key={d.id} className={styles.dietOption}>{d.name}</option>
+                    <option value={d.title} key={d.id} className={styles.dietOption}>{d.title}</option>
                   ))
                 }
               </select>
@@ -166,7 +167,7 @@ export default function RecipeCreate() {
                 <p style={{ float: 'right' }}>{errors.diets}</p>
               )}
               {post.diets.map(d =>
-                <div key={d.id} className={styles.divdiets}>
+                <div key={d.id + '1'} className={styles.divdiets}>
                   <p className={styles.selecteddiets}>{d}</p>
                   <button onClick={() => handleDietDelete(d)}
                     className={styles.buttonclose}>X</button>
@@ -185,6 +186,19 @@ export default function RecipeCreate() {
 }
 
 
-/* Imágen del Anchi
+/* 
+anchi de limón
+
+comida y postre tradicional
+
+Abuela Emilia
+
+100
+
 https://img-global.cpcdn.com/recipes/8e4ada7e89827ac2/1200x630cq70/photo.jpg 
+
+hervir agua
+agregar semola, limon y azúcar
+batir y listo, dejar enfriar para un buen manjar
+
 */

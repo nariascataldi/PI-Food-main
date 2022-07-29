@@ -68,14 +68,14 @@ router.post('/recipes', async (req, res) => {
 
 //modifico destructuring
 
-router.get('/types', async (req, res) => {
+router.get('/types', async (req, res, next) => {
     try {
         const diets = await Diet.findAll();
         diets.length ?
             res.send(diets) :
             res.send('error al traer dietas');
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 })
 module.exports = router;

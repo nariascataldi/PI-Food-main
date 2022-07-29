@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4
     },
     title: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false
     },
     summary: {
@@ -37,42 +37,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
       defaultValue: "https://www.euskadi.eus/contenidos/informacion/alim_sal_plato/es_def/images/plato-saludable01.PNG"
-    },
-    vegetarian:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    vegan:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    glutenFree:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    dairyFree:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    veryHealthy:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    cheap:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    veryPopular:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    sustainable:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
-    lowFodmap:{
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
     },
     createInDb: {
       type: DataTypes.BOOLEAN,

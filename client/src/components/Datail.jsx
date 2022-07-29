@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { recipeDetail } from "../actions";
-import style from "./Detail.module.css"
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faSeedling, faStar } from '@fortawesome/free-solid-svg-icons'
+import style from "./Detail.module.css";
 
 export default function RecipeDetail() {
   const dispatch = useDispatch();
@@ -20,7 +18,7 @@ export default function RecipeDetail() {
   return (
     <div className={style.component}>
       {
-        detailedRecipe.length > 0 ?
+        detailedRecipe ?
           <div>
             <h1 className={style.title}>{detailedRecipe[0].title}</h1>
             <div className={style.imgContainer}>
@@ -28,13 +26,14 @@ export default function RecipeDetail() {
                 width="500px" height="400px" className={style.img} />
             </div>
             <div className={style.detailContainer}>
-              <h3 className={style.h3}>Healthy-Food level: {detailedRecipe[0].healthScore} </h3>
-              <h3 className={style.h3}>Step-by-step:</h3>
+              <h3 className={style.h3}>Healthy Food level: {detailedRecipe[0].healthScore} </h3>
+              <h3 className={style.h3}>Instructions:</h3>
               <p className={style.p} dangerouslySetInnerHTML={{ __html: detailedRecipe[0].analyzedInstructions }}></p>
               <h3 className={style.h3}>Summary:</h3><p className={style.p} dangerouslySetInnerHTML={{ __html: detailedRecipe[0].summary }}></p>
-              <h3 className={style.h3}>Diet types:</h3><ul className={style.p}>{detailedRecipe[0].diets.map(d => <li className={style.li}>{d.name}</li>)}</ul>
+              <h3 className={style.h3}>Diet types:</h3><ul className={style.p}>{detailedRecipe[0].diets.map(d => <li className={style.li}>{d.title}</li>)}</ul>
             </div>
-          </div> :
+          </div> 
+          :
           <p>Loading...</p>
       }
     </div>
