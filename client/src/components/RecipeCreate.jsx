@@ -185,3 +185,6 @@ export default function RecipeCreate() {
 }
 
 
+/* Imágen del Anchi
+https://img-global.cpcdn.com/recipes/8e4ada7e89827ac2/1200x630cq70/photo.jpg 
+*/

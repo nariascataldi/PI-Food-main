@@ -4,14 +4,13 @@ import {
   FILTER_BY_TYPES,
   ORDER_BY_NAME,
   GET_RECIPES_TITLE,
-  ORDER_BY_SCORE,
   RECIPE_DETAIL,
   POST_RECIPE
 } from "../actions/index";
 const initialState = {
   recipes: [],
   allRecipes: [],
-  diets:[],
+  diets: [],
 }
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -66,6 +65,11 @@ function rootReducer(state = initialState, action) {
     case POST_RECIPE:
       return {
         ...state
+      }
+    case RECIPE_DETAIL:
+      return {
+        ...state,
+        detail: action.payload
       }
     default:
       return state;
