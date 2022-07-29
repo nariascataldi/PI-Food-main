@@ -11,6 +11,7 @@ import {
 const initialState = {
   recipes: [],
   allRecipes: [],
+  diets:[],
 }
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -57,6 +58,15 @@ function rootReducer(state = initialState, action) {
         ...state,
         recipes: action.payload
       };
+    case GET_DIETS:
+      return {
+        ...state,
+        diets: action.payload
+      }
+    case POST_RECIPE:
+      return {
+        ...state
+      }
     default:
       return state;
   }
