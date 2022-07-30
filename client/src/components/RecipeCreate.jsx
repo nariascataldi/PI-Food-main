@@ -2,37 +2,61 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { postRecipe, getDiets } from "../actions";
-import styles from './RecipeCreate.module.css'
+import styles from './RecipeCreate.module.css';
+import axios from "axios";
 
 function validate(post) {
+  let imgValidate = /(https?:\/\/.*\.(?:png|jpg))/;
+  let testTitle = /^[A-Z][a-z][^$()!¡@#/=¿{}?*%&|<>#]*$/;
   let errors = {};
+
   if (!post.title) {
-    errors.title = 'Ingresar nombre de la receta'
+    errors.title = 'Enter recipe name'
   }
+  else if (!testTitle.test(post.title)) {
+    errors.title = 'Start the title with capital letter. Only characters "":.,_- are accepted'
+  }
+
   if (!post.summary) {
-    errors.summary = 'Escribe un breve resumen'
+    errors.summary = 'Write a short summary'
+  } else if (100 <= post.summary.length) {
+    errors.summary = 'Not exceed 100 characters'
   }
+  else if (!testTitle.test(post.summary)) {
+    errors.summary = 'Start summary with capital letter. Only characters "":.,_- are accepted'
+  }
+
   if (!post.creditsText) {
-    errors.creditsText = 'Ingresa para quién son los Honores'
+    errors.creditsText = 'Enter who the Honors are for'
   }
+  else if (!testTitle.test(post.creditsText)) {
+    errors.creditsText = 'Start with capital letter. Only characters "":.,_- are accepted'
+  }
+
   if (!post.healthScore || post.healthScore < 0 || post.healthScore > 100) {
-    errors.healthScore = 'Ingresa un valor de 0 a 100'
+    errors.healthScore = 'Enter a value from 0 to 100'
   }
+
   if (!post.analyzedInstructions.length) {
-    errors.analyzedInstructions = 'Escribe una serie de pasos sobre cómo cocinar la receta'
+    errors.analyzedInstructions = 'Write a series of steps on how to cook the recipe'
   }
-  if (!post.image) {
-    errors.image = 'Ingresar URL de alguna imagen representativa'
+  else if (!testTitle.test(post.analyzedInstructions)) {
+    errors.analyzedInstructions = 'Start with capital letter. Only characters "":.,_- are accepted'
   }
-  if (!post.diets.length) {
-    errors.diets = 'Elige al menos un tipo de dieta'
+
+  if (!post.image || !imgValidate.test(post.image)) {
+    errors.image = 'Enter the URL of a representative image in jpg or png format'
+  }
+
+  if (!post.diet.length) {
+    errors.diet = 'Choose at least one type of diet'
   }
   return errors;
 }
 
 export default function RecipeCreate() {
   const dispatch = useDispatch();
-  const diets = useSelector((state) => state.diets);
+  const diet = useSelector((state) => state.diets);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -40,13 +64,13 @@ export default function RecipeCreate() {
   }, [dispatch])
 
   const [post, setPost] = useState({
-    title: '',
-    summary: '',
-    creditsText: '',
-    healthScore: 0,
-    analyzedInstructions: [],
-    image: '',
-    diets: []
+    "title": "Anchi de Limón",
+    "summary": "Comida y postre tradicional",
+    "creditsText": "Abuela Emilia",
+    "healthScore": 100,
+    "analyzedInstructions": ["Hervir agua", "Agregar Polenta, Azúcar y Jugo de Limón a gusto"],
+    "image": "https://img-global.cpcdn.com/recipes/8e4ada7e89827ac2/1200x630cq70/photo.jpg",
+    "diet": []
   })
   function handleInputChange(e) {
     setPost({
@@ -59,46 +83,58 @@ export default function RecipeCreate() {
     }));
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (Object.values(errors).length > 0) alert("Por favor rellenar todos los campos")
     else {
-      dispatch(postRecipe(post))
-      alert('¡Receta creada con éxito!')
+      console.log('Error ', errors);
+      console.log("Post ", post);
+      await axios.post('http://localhost:3001/recipes', post);
+      alert('¡Receta creada con éxito!');
+
+      setPost({
+        title: "",
+        summary: "",
+        creditsText: '',
+        healthScore: 0,
+        analyzedInstructions: [],
+        image: "",
+        diet: []
+      })
     }
   };
 
   function handleSteps(e) {
     setPost({
       ...post,
-      analyzedInstructions: [e.target.value]
+      analyzedInstructions: [...new Set([...post.analyzedInstructions, e.target.value])] //new set elimina los valores repetidos
     });
     setErrors(validate({
       ...post,
-      analyzedInstructions: e.target.value
+      analyzedInstructions: [...new Set([...post.analyzedInstructions, e.target.value])]
     }));
   }
 
   function handleSelectDiets(e) {
-    if (!post.diets.includes(e.target.value))
+    if (!post.diet.includes(e.target.value))
       setPost({
         ...post,
-        diets: [...post.diets, e.target.value]
+        diet: Array.from(new Set([...post.diet, e.target.value]))
       });
     setErrors(validate({
       ...post,
-      diets: [...post.diets, e.target.value]
+      diet: Array.from(new Set([...post.diet, e.target.value]))
     }));
   };
-  
+
   function handleDietDelete(diet) {
     setPost({
       ...post,
-      diets: post.diets.filter(elemet => elemet !== diet)
+      diet: post.diet.filter(elemet => elemet !== diet)
     })
     setErrors(validate({
       ...post,
-      diets: [...post.diets]
+      diet: [...post.diet]
     }));
 
   };
@@ -119,7 +155,7 @@ export default function RecipeCreate() {
             </div>
             <div>
               <label>📝 Summary</label>
-              <textarea value={post.summary} key='summary' name='summary' onChange={e => handleInputChange(e)} />
+              <input type='text' value={post.summary} key='summary' name='summary' onChange={e => handleInputChange(e)} />
               {errors.summary && (
                 <p>{errors.summary}</p>
               )}
@@ -152,29 +188,29 @@ export default function RecipeCreate() {
                 <p>{errors.analyzedInstructions}</p>
               )}
             </div>
-  {/* --------------------TODO: EN EL HOME ------------------*/}
             <div>
               <select onChange={e => handleSelectDiets(e)} defaultValue='default'
                 className={styles.dietSelect}>
                 <option value="default" disabled className={styles.dietOption}>Choose diets</option>
                 {
-                  diets && diets.map(d => (
+                  diet && diet.map((d) => (
                     <option value={d.title} key={d.id} className={styles.dietOption}>{d.title}</option>
                   ))
                 }
               </select>
-              {errors.diets && (
-                <p style={{ float: 'right' }}>{errors.diets}</p>
+              {errors.diet && (
+                <p style={{ float: 'right' }}>{errors.diet}</p>
               )}
-              {post.diets.map(d =>
-                <div key={d.id + '1'} className={styles.divdiets}>
+              {post.diet.map(d =>
+                <div key={d.id} className={styles.divdiets}>
                   <p className={styles.selecteddiets}>{d}</p>
                   <button onClick={() => handleDietDelete(d)}
                     className={styles.buttonclose}>X</button>
                 </div>
               )}
             </div>
-            <button type='submit' className={styles.createButton}>Submit!</button>
+            <button type='submit' className={styles.createButton} >Submit!</button>
+            {/* disabled={errors ? true : false} */}
           </form>
           <Link to='/home'>
             <button className={styles.createButton}>Back</button>
@@ -187,9 +223,9 @@ export default function RecipeCreate() {
 
 
 /* 
-anchi de limón
+Anchi de limón
 
-comida y postre tradicional
+Comida y postre tradicional
 
 Abuela Emilia
 
@@ -197,8 +233,8 @@ Abuela Emilia
 
 https://img-global.cpcdn.com/recipes/8e4ada7e89827ac2/1200x630cq70/photo.jpg 
 
-hervir agua
-agregar semola, limon y azúcar
-batir y listo, dejar enfriar para un buen manjar
+Hervir agua
+Agregar semola, limon y azúcar
+Batir y listo, dejar enfriar para un buen manjar
 
 */
