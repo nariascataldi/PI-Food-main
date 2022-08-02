@@ -1,0 +1,21 @@
+.menu {
+    list-style: none;
+    width: 100%;
+    height: 6rem;
+    position: relative;
+    background-image: url('../assets/image/background-images/LandingPage/manta.png');
+    background-repeat: repeat;
+}
+.a {
+    margin: 0rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: rgba(36, 13, 247, 1);
+    position: relative;
+    font-weight: bolder;
+    cursor: pointer;
+    font-size: 2rem;
+    font-family: 'Snell Roundhand', 'Zapfino', 'SignPainter', Arial, Helvetica, sans-serif;
+}

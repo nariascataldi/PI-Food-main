@@ -141,7 +141,6 @@ export default function RecipeCreate() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.bkg} />
       <div className={styles.bkgcolor}>
         <div className={styles.form}>
           <h1>Please fill in all the fields</h1>

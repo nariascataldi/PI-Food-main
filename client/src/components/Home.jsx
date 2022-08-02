@@ -6,9 +6,8 @@ import { Link } from "react-router-dom";
 import Cards from "./Card";
 import Paginate from "./Paginate";
 import SearchBar from "./SearchBar";
-
 import styles from "./Home.module.css";
-
+import cooking from "../assets/image/cooking.png";
 
 //hook
 export default function Home() {
@@ -51,62 +50,81 @@ export default function Home() {
 
   return (
     <div className={styles.bodyHome}>
-      <div className={styles.ingred}>
-        <h1>Néstor Arias</h1>
-      </div>
-      <div>
-        <h1>Recetas</h1>
-
-        <Link to='/recipe'>
-          <button className={styles.bCrear} id='hC'>Create recipes</button>
-        </Link>
-        <button onClick={e => { handleClick(e) }}>Reload recipes</button>
-        <div>
-          <select onChange={e => handleSort(e)} defaultValue='default' key='sort' className={styles.filters}>
-            <option value="default" disabled >Alphabetical order</option>
-            <option value='asc'>A-Z</option>
-            <option value='des'>Z-A</option>
-          </select>
-          <select onChange={e => handleFilterTypesFi(e)} key='typesFi' className={styles.filters} defaultValue='default'>
-            <option value="default" disabled >Types of diets</option>
-            <option value='All'>All</option>
-            <option value='gluten free'>Gluten Free</option>
-            <option value='dairy free'>Dairy Free</option>
-            <option value='vegan'>Vegan</option>
-            <option value='lacto ovo vegetarian'>Lacto-Ovo Vegetarian</option>
-            <option value='pescatarian'>Pescatarian</option>
-            <option value='paleolithic'>Paleolithic</option>
-            <option value='primal'>Primal</option>
-            <option value='fodmap friendly'>Low FODMAP</option>
-            <option value='whole 30'>Whole30</option>
-            <option value='vegetarian'>Vegeterian</option>
-            <option value='ketogenic'>Ketogenic</option>
-          </select>
-          <select onChange={e => handleFilterTypes(e)} key='types' className={styles.filters} defaultValue='default'>
-            <option value="default" disabled >Types of diets</option>
-            <option value='All'>All</option>
-            <option value='gluten free'>Gluten Free</option>
-            <option value='dairy free'>Dairy Free</option>
-            <option value='vegan'>Vegan</option>
-            <option value='lacto ovo vegetarian'>Lacto-Ovo Vegetarian</option>
-            <option value='pescatarian'>Pescatarian</option>
-            <option value='paleolithic'>Paleolithic</option>
-            <option value='primal'>Primal</option>
-            <option value='fodmap friendly'>Low FODMAP</option>
-            <option value='whole 30'>Whole30</option>
-            <option value='vegetarian'>Vegeterian</option>
-            <option value='ketogenic'>Ketogenic</option>
-          </select>
-
-          
+      <div className={styles.navBar}>
+        <div className={styles.navBar_f1}>
+          <div className={styles.create_reload}>
+            <div className={styles.create}>
+              <Link to='/recipe'>
+                <button className={styles.bCrear} id='hC'>Create recipes</button>
+              </Link>
+            </div>
+            <div className={styles.reload}>
+              <button onClick={e => { handleClick(e) }}>Reload recipes</button>
+            </div>
+          </div>
+          <div className={styles.titlec}>
+            <h1 className={styles.title}>Recipes</h1>
+          </div>
+          <div className={styles.searchBar}>
+            <SearchBar />
+          </div>
         </div>
-        <Paginate
-          recipesPerPage={recipesPerPage}
-          allRecipes={allRecipes.length}
-          paginate={paginate}
-        />
-        <SearchBar />
-        <div className={styles.cardsGrid}>
+        <div className={styles.navBar_f2}>
+          <div className={styles.filter}>
+            <div>
+              <select onChange={e => handleSort(e)} defaultValue='default' key='sort' className={styles.filters}>
+                <option value="default" disabled >Alphabetical order</option>
+                <option value='asc'>A-Z</option>
+                <option value='des'>Z-A</option>
+              </select>
+              <select onChange={e => handleFilterTypesFi(e)} key='typesFi' className={styles.filters} defaultValue='default'>
+                <option value="default" disabled >Types of diets</option>
+                <option value='All'>All</option>
+                <option value='gluten free'>Gluten Free</option>
+                <option value='dairy free'>Dairy Free</option>
+                <option value='vegan'>Vegan</option>
+                <option value='lacto ovo vegetarian'>Lacto-Ovo Vegetarian</option>
+                <option value='pescatarian'>Pescatarian</option>
+                <option value='paleolithic'>Paleolithic</option>
+                <option value='primal'>Primal</option>
+                <option value='fodmap friendly'>Low FODMAP</option>
+                <option value='whole 30'>Whole30</option>
+                <option value='vegetarian'>Vegeterian</option>
+                <option value='ketogenic'>Ketogenic</option>
+              </select>
+              <select onChange={e => handleFilterTypes(e)} key='types' className={styles.filters} defaultValue='default'>
+                <option value="default" disabled >Types of diets</option>
+                <option value='All'>All</option>
+                <option value='gluten free'>Gluten Free</option>
+                <option value='dairy free'>Dairy Free</option>
+                <option value='vegan'>Vegan</option>
+                <option value='lacto ovo vegetarian'>Lacto-Ovo Vegetarian</option>
+                <option value='pescatarian'>Pescatarian</option>
+                <option value='paleolithic'>Paleolithic</option>
+                <option value='primal'>Primal</option>
+                <option value='fodmap friendly'>Low FODMAP</option>
+                <option value='whole 30'>Whole30</option>
+                <option value='vegetarian'>Vegeterian</option>
+                <option value='ketogenic'>Ketogenic</option>
+              </select>
+            </div>
+          </div>
+          <div className={styles.food}>
+            <img src={cooking} alt='cooking' width="50px" />
+          </div>
+        </div>
+        <div className={styles.navBar_f3}>
+          <div className={styles.paginate}>
+            <Paginate
+              recipesPerPage={recipesPerPage}
+              allRecipes={allRecipes.length}
+              paginate={paginate}
+            />
+          </div>
+        </div>
+      </div>
+      <div className={styles.conteiner}>
+        <div className={styles.listRecipes}>
           {currentRecipes?.map((card) => {
             return (
               <Cards
