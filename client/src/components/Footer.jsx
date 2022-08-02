@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 export default function Footer() {
   return (
     <div className={styles.menu}>
-      <NavLink exact to="/" className={styles.a}>About Me</NavLink>
+      <NavLink exact to="/about" className={styles.a}>About Me</NavLink>
     </div>
   );
 }

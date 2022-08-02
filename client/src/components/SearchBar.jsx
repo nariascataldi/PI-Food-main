@@ -18,6 +18,7 @@ export default function SearchBar() {
   }
 
   return (
+    
     <div className={styles.searchBar}>
       <input
         type='text'

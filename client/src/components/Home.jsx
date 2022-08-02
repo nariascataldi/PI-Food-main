@@ -6,15 +6,20 @@ import { Link } from "react-router-dom";
 import Cards from "./Card";
 import Paginate from "./Paginate";
 import SearchBar from "./SearchBar";
+import Loading from "./Loading";
+
 import styles from "./Home.module.css";
 import cooking from "../assets/image/cooking.png";
+
+
+
 
 //hook
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
   const [currentPage, setCurrentPage] = useState(1);
-  const [recipesPerPage, setRecipesPerPage] = useState(9);
+  const [recipesPerPage] = useState(9);
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
@@ -22,9 +27,12 @@ export default function Home() {
     setCurrentPage(pageNumber)
   };
   const [sort, setSort] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    dispatch(getRecipes())
+    setLoading(true);
+    dispatch(getRecipes());
+    setLoading(false);
   }, [dispatch])
 
   function handleClick(e) {
@@ -50,6 +58,7 @@ export default function Home() {
 
   return (
     <div className={styles.bodyHome}>
+    {loading && <Loading />}
       <div className={styles.navBar}>
         <div className={styles.navBar_f1}>
           <div className={styles.create_reload}>
@@ -107,6 +116,7 @@ export default function Home() {
                 <option value='vegetarian'>Vegeterian</option>
                 <option value='ketogenic'>Ketogenic</option>
               </select>
+        
             </div>
           </div>
           <div className={styles.food}>
@@ -125,6 +135,7 @@ export default function Home() {
       </div>
       <div className={styles.conteiner}>
         <div className={styles.listRecipes}>
+
           {currentRecipes?.map((card) => {
             return (
               <Cards
@@ -138,6 +149,7 @@ export default function Home() {
             )
           })
           }
+          
         </div>
       </div>
     </div>

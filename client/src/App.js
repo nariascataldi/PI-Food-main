@@ -1,4 +1,4 @@
-import React, { useDebugValue } from 'react';
+import React from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -10,6 +10,7 @@ import Home from './components/Home';
 import RecipeCreate from './components/RecipeCreate';
 import Detail from './components/Datail';
 import Footer from './components/Footer';
+import About from './components/About';
 import './App.css';
 
 function App() {
@@ -18,11 +19,12 @@ function App() {
       <div className="App">
         <Routes>
           <Route path='/' element={<LandingPage />} />
-            <Route path='/home' element={<Home />} />
-            <Route path='/recipe' element={<RecipeCreate />} />
-            <Route path='/recipe/:id' element={<Detail />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/recipe' element={<RecipeCreate />} />
+          <Route path='/recipe/:id' element={<Detail />} />
+          <Route path='/about' element={<About />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </div>
     </BrowserRouter>
   );

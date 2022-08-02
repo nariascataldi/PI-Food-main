@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { postRecipe, getDiets } from "../actions";
+import { getDiets } from "../actions";
 import styles from './RecipeCreate.module.css';
 import axios from "axios";
 
@@ -68,7 +68,7 @@ export default function RecipeCreate() {
     "summary": "Comida y postre tradicional",
     "creditsText": "Abuela Emilia",
     "healthScore": 100,
-    "analyzedInstructions": ["Hervir agua", "Agregar Polenta, Azúcar y Jugo de Limón a gusto"],
+    "analyzedInstructions": ["Hervir agua, Agregar Polenta, Azúcar y Jugo de Limón a gusto"],
     "image": "https://img-global.cpcdn.com/recipes/8e4ada7e89827ac2/1200x630cq70/photo.jpg",
     "diet": []
   })
