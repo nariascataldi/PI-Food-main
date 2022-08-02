@@ -107,11 +107,12 @@ export default function RecipeCreate() {
   function handleSteps(e) {
     setPost({
       ...post,
-      analyzedInstructions: [...new Set([...post.analyzedInstructions, e.target.value])] //new set elimina los valores repetidos
+      // analyzedInstructions: [e.target.value]
+      analyzedInstructions: [...new Set([e.target.value])] //new set elimina los valores repetidos
     });
     setErrors(validate({
       ...post,
-      analyzedInstructions: [...new Set([...post.analyzedInstructions, e.target.value])]
+      analyzedInstructions: [...new Set([e.target.value])]
     }));
   }
 
@@ -208,8 +209,8 @@ export default function RecipeCreate() {
                 </div>
               )}
             </div>
-            <button type='submit' className={styles.createButton} >Submit!</button>
-            {/* disabled={errors ? true : false} */}
+            <button type='submit' className={styles.createButton} disabled={!post.title ? true : false} >Submit!</button>
+
           </form>
           <Link to='/home'>
             <button className={styles.createButton}>Back</button>

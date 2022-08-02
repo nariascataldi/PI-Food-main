@@ -20,10 +20,8 @@ export default function Card({ image, title, diet, id, creditsText }) {
               <ul className={styles.cardDescription}>
                 {diet.map(d => <li key={d.title}>{d.title}</li>)}
               </ul>
-              {/* <a> */}
-                <Link to={'/recipe/' + id} className={styles.cardRead}>
-                  See recipe details by {creditsText}</Link>
-              
+              <Link to={'/recipe/' + id} className={styles.cardRead}>
+                See recipe details by {creditsText}</Link>
             </div>
           </div>
         </div>
