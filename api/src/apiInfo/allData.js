@@ -3,7 +3,7 @@ const { Recipe, Diet } = require('../db');
 const { API_RECIPES_INFO } = require('../utils/config');
 
 const getApiInfo = async () => {
-  const apiUrl = await axios.get(API_RECIPES_INFO); //API_RECIPES_INFO
+  const apiUrl = await axios.get(API_RECIPES_INFO);
 
   const apiInfo = await apiUrl.data.results.map(elApi => {
     return {
