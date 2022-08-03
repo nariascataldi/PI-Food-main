@@ -14,14 +14,3 @@ module.exports = (sequelize) => {
   ID:                  id
   Nombre:              title
 */
-/**
-vegetarian	true
-vegan	true
-glutenFree	true
-dairyFree	true
-veryHealthy	true
-cheap	false
-veryPopular	true
-sustainable	false
-lowFodmap	false
- */

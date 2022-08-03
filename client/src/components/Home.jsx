@@ -86,21 +86,6 @@ export default function Home() {
                 <option value='asc'>A-Z</option>
                 <option value='des'>Z-A</option>
               </select>
-              <select onChange={e => handleFilterTypesFi(e)} key='typesFi' className={styles.filters} defaultValue='default'>
-                <option value="default" disabled >Types of diets</option>
-                <option value='All'>All</option>
-                <option value='gluten free'>Gluten Free</option>
-                <option value='dairy free'>Dairy Free</option>
-                <option value='vegan'>Vegan</option>
-                <option value='lacto ovo vegetarian'>Lacto-Ovo Vegetarian</option>
-                <option value='pescatarian'>Pescatarian</option>
-                <option value='paleolithic'>Paleolithic</option>
-                <option value='primal'>Primal</option>
-                <option value='fodmap friendly'>Low FODMAP</option>
-                <option value='whole 30'>Whole30</option>
-                <option value='vegetarian'>Vegeterian</option>
-                <option value='ketogenic'>Ketogenic</option>
-              </select>
               <select onChange={e => handleFilterTypes(e)} key='types' className={styles.filters} defaultValue='default'>
                 <option value="default" disabled >Types of diets</option>
                 <option value='All'>All</option>
@@ -167,3 +152,20 @@ Ruta principal: debe contener
 [✔️✔️] Botones/Opciones para ordenar tanto ascendentemente como descendentemente las recetas por orden alfabético y por health score (nivel de comida saludable).
 [✔️✔️] Paginado para ir buscando y mostrando las siguientes recetas, 9 recetas por pagina, mostrando las primeros 9 en la primer pagina.
  */
+
+//este filtrado no me quedó lindo
+/* <select onChange={e => handleFilterTypesFi(e)} key='typesFi' className={styles.filters} defaultValue='default'>
+<option value="default" disabled >Types of diets</option>
+<option value='All'>All</option>
+<option value='gluten free'>Gluten Free</option>
+<option value='dairy free'>Dairy Free</option>
+<option value='vegan'>Vegan</option>
+<option value='lacto ovo vegetarian'>Lacto-Ovo Vegetarian</option>
+<option value='pescatarian'>Pescatarian</option>
+<option value='paleolithic'>Paleolithic</option>
+<option value='primal'>Primal</option>
+<option value='fodmap friendly'>Low FODMAP</option>
+<option value='whole 30'>Whole30</option>
+<option value='vegetarian'>Vegeterian</option>
+<option value='ketogenic'>Ketogenic</option>
+</select> */

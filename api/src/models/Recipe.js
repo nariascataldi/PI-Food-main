@@ -53,3 +53,15 @@ module.exports = (sequelize) => {
   Nivel de "comida saludable"   health score
   Paso a paso                   analyzedInstructions
 */
+/*
+* Me las traería para trabajarlas un poco
+vegetarian	true
+vegan	true
+glutenFree	true
+dairyFree	true
+veryHealthy	true
+cheap	false
+veryPopular	true
+sustainable	false
+lowFodmap	false
+ */

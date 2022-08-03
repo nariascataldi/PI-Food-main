@@ -91,7 +91,6 @@ export default function RecipeCreate() {
       console.log("Post ", post);
       await axios.post('http://localhost:3001/recipes', post);
       alert('¡Receta creada con éxito!');
-
       setPost({
         title: "",
         summary: "",

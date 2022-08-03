@@ -18,25 +18,33 @@ router.get('/', (req, res) => {
 router.get('/recipes', async (req, res) => {
     const title = req.query.title;
     let recipesTotal = await model.getAllRecipes();
-    if (title) {
-        let recipeQuery = await recipesTotal.filter(r => r.title.toLowerCase().includes(title.toLowerCase()));
-        recipeQuery.length ?
-            res.status(200).send(recipeQuery) :
-            res.status(404).send(`No está la Receta ${title}`);
-    } else {
-        res.status(200).send(recipesTotal)
+    try {
+        if (title) {
+            let recipeQuery = await recipesTotal.filter(r => r.title.toLowerCase().includes(title.toLowerCase()));
+            recipeQuery.length ?
+                res.status(200).send(recipeQuery) :
+                res.status(404).send(`No está la Receta ${title}`);
+        } else {
+            res.status(200).send(recipesTotal)
+        }
+    } catch (error) {
+        console.log('ALL RECIPES ', error);
     }
 });
 router.get('/recipes/:id', async (req, res) => {
     const id = req.params.id;
     const recipesTotal = await model.getAllRecipes();
-    if (id) {
-        const recipesID = await recipesTotal.filter(r => r.id == id);
-        recipesID.length ?
-            res.send(recipesID) :
-            res.send('No se encontró la receta')
-    } else {
-        res.send('Ingrese un Id')
+    try {
+        if (id) {
+            const recipesID = await recipesTotal.filter(r => r.id == id);
+            recipesID.length ?
+                res.send(recipesID) :
+                res.send('No se encontró la receta')
+        } else {
+            res.send('Ingrese un Id')
+        }        
+    } catch (error) {
+        console.log('ID ', error);
     }
 })
 router.post('/recipes', async (req, res) => {

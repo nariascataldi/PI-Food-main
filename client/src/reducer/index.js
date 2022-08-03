@@ -21,14 +21,7 @@ function rootReducer(state = initialState, action) {
         recipes: action.payload,
         allRecipes: action.payload
       }
-    case FILTER_TYPES_FI:
-      const allRecipesF = state.recipes; //state.recipes
-      const typesFilteredF = action.payload === 'All' ? allRecipesF : allRecipesF.filter(el => el.diets.includes(action.payload) ||
-        el.diets.map((el) => el.title).includes(action.payload))
-      return {
-        ...state,
-        recipes: typesFilteredF
-      }
+      
     case FILTER_BY_TYPES:
       const allRecipes = state.allRecipes; //state.recipes
       const typesFiltered = action.payload === 'All' ? allRecipes : allRecipes.filter(el => el.diets.includes(action.payload) ||
@@ -85,3 +78,13 @@ function rootReducer(state = initialState, action) {
   }
 }
 export default rootReducer;
+
+// todo no lo pude poner lindo
+    // case FILTER_TYPES_FI:
+    //   const allRecipesF = state.recipes; //state.recipes
+    //   const typesFilteredF = action.payload === 'All' ? allRecipesF : allRecipesF.filter(el => el.diets.includes(action.payload) ||
+    //     el.diets.map((el) => el.title).includes(action.payload))
+    //   return {
+    //     ...state,
+    //     recipes: typesFilteredF
+    //   }
