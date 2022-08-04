@@ -22,7 +22,7 @@ export default function Home() {
   const [recipesPerPage] = useState(9);
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
-  const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const currentRecipes = allRecipes?.slice(indexOfFirstRecipe, indexOfLastRecipe);
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
   };
@@ -112,7 +112,7 @@ export default function Home() {
           <div className={styles.paginate}>
             <Paginate
               recipesPerPage={recipesPerPage}
-              allRecipes={allRecipes.length}
+              allRecipes={allRecipes?.length}
               paginate={paginate}
             />
           </div>
@@ -121,7 +121,7 @@ export default function Home() {
       <div className={styles.conteiner}>
         <div className={styles.listRecipes}>
 
-          {currentRecipes?.map((card) => {
+          {currentRecipes ? currentRecipes.map((card) => {
             return (
               <Cards
                 diet={card.diets}
@@ -132,7 +132,7 @@ export default function Home() {
                 creditsText={card.creditsText}
               />
             )
-          })
+          }) :  <Link to='/recipe'><h2>Nothing at all, create please</h2></Link>
           }
           
         </div>

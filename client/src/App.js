@@ -18,9 +18,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route exact='true' path='/' element={<LandingPage />} />
+          <Route exact path='/' element={<LandingPage />} />
           <Route path='/home' element={<Home />} />
-          <Route exact='true' path='/recipe' element={<RecipeCreate />} />
+          <Route exact path='/recipe' element={<RecipeCreate />} />
           <Route path='/recipe/:id' element={<Detail />} />
           <Route path='/about' element={<About />} />
         </Routes>

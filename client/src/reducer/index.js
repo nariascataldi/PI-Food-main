@@ -6,12 +6,15 @@ import {
   GET_RECIPES_TITLE,
   RECIPE_DETAIL,
   POST_RECIPE,
-  FILTER_TYPES_FI
+  // FILTER_TYPES_FI
 } from "../actions/index";
 const initialState = {
   recipes: [],
   allRecipes: [],
   diets: [],
+  detail:[],          //si quiero almacenar una sola receta
+  // copiOfRecipes:[],   //filtar algo y que necesite esa copia
+  // filtros: ['asc']    //al entrar al home tengo que poner un condicional si es que existe filtro -> aplicar
 }
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -57,7 +60,7 @@ function rootReducer(state = initialState, action) {
     case GET_RECIPES_TITLE:
       return {
         ...state,
-        recipes: action.payload
+        recipes: action.payload,
       };
     case GET_DIETS:
       return {

@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { recipeDetail } from "../actions";
 import style from "./Detail.module.css";
+import Loading from "./Loading";
 
 export default function RecipeDetail() {
+  console.log('DETAIL ');
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
@@ -17,7 +19,7 @@ export default function RecipeDetail() {
   return (
     <div className={style.component}>
       {
-        detailedRecipe ?
+        detailedRecipe.length>0 ?
           <div>
             <h1 className={style.title}>{detailedRecipe[0].title}</h1>
             <div className={style.imgContainer}>
@@ -33,7 +35,7 @@ export default function RecipeDetail() {
             </div>
           </div> 
           :
-          <p>Loading...</p>
+          <div className={style.loading}><Loading></Loading></div>
       }
     </div>
   )

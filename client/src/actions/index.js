@@ -20,15 +20,13 @@ export function getRecipes() {
 }
 export function getRecipesTitle(title) {
   return async function (dispatch) {
-    try {
+    
       var json = await axios.get('http://localhost:3001/recipes?title=' + title);
       return dispatch({
         type: GET_RECIPES_TITLE,
         payload: json.data
       })
-    } catch (error) {
-      console.log(error);
-    }
+    
   }
 };
 export function filterRecipesByTypeFi(payload) {

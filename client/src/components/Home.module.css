@@ -54,7 +54,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   /* align-content: stretch; */
-  justify-content: end;
+  justify-content: flex-end;
   align-items: baseline;
 }
 

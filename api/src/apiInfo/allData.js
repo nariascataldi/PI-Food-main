@@ -11,7 +11,7 @@ const getApiInfo = async () => {
       title: elApi.title,
       summary: elApi.summary,
       creditsText: elApi.creditsText,
-      diets: elApi.diets.length ? elApi.diets.map(d => { return { title: d } }) : [],
+      diets: elApi.diets.length ? elApi.diets.map(d => { return { title: d}}) : [],
       image: elApi.image,
       healthScore: elApi.healthScore,
       analyzedInstructions: elApi.analyzedInstructions.length ? elApi.analyzedInstructions[0].steps.map(s => s.step) : [],
@@ -38,7 +38,7 @@ const getAllRecipes = async () => {
   const infoTotal = apiInfo.concat(dbInfo);
   return infoTotal;
 }
-const allDiets = async function () {
+const allDiets = async function(){
   const dietsApi = await axios.get(API_RECIPES_INFO);
   const dietsListR = dietsApi.data.results.flatMap(d => d.diets);
   return [... new Set(dietsListR)]
