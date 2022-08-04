@@ -107,8 +107,7 @@ export default function Home() {
                 <option value='whole 30'>Whole30</option>
                 <option value='vegetarian'>Vegeterian</option>
                 <option value='ketogenic'>Ketogenic</option>
-              </select>
-        
+              </select>      
             </div>
           </div>
           <div className={styles.food}>
