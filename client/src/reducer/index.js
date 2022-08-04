@@ -3,6 +3,7 @@ import {
   GET_DIETS,
   FILTER_BY_TYPES,
   ORDER_BY_NAME,
+  ORDER_BY_HSCORE,
   GET_RECIPES_TITLE,
   RECIPE_DETAIL,
   POST_RECIPE,
@@ -12,9 +13,7 @@ const initialState = {
   recipes: [],
   allRecipes: [],
   diets: [],
-  detail:[],          //si quiero almacenar una sola receta
-  // copiOfRecipes:[],   //filtar algo y que necesite esa copia
-  // filtros: ['asc']    //al entrar al home tengo que poner un condicional si es que existe filtro -> aplicar
+  detail:[],
 }
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -32,6 +31,30 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         recipes: typesFiltered
+      }
+    case ORDER_BY_HSCORE:
+      const sortHScore = action.payload === 'des' ?
+        state.allRecipes.sort(function (a, b) {
+          if (a.healthScore > b.healthScore) {
+            return 1;
+          }
+          if (b.healthScore > a.healthScore) {
+            return -1;
+          }
+          return 0;
+        }) :
+        state.allRecipes.sort(function (a, b) {  //de forma ascendente
+          if (a.healthScore > b.healthScore) {
+            return -1;
+          }
+          if (b.healthScore > a.healthScore) {
+            return 1
+          }
+          return 0;
+        })
+      return {
+        ...state,
+        recipes: sortHScore
       }
     case ORDER_BY_NAME:
       const sortArr = action.payload === 'asc' ?
@@ -57,6 +80,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         recipes: sortArr
       }
+    
     case GET_RECIPES_TITLE:
       return {
         ...state,

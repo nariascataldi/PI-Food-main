@@ -23,6 +23,7 @@ export default function SearchBar() {
 
     <div className={styles.searchBar}>
       <input
+        icon='search'
         type='text'
         placeholder="Search..."
         onChange={(e) => handleInputChange(e)}

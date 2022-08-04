@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, filterRecipesByType, orderByName, filterRecipesByTypeFi } from "../actions";
+import { getRecipes, filterRecipesByType, orderByName, orderByHScore } from "../actions";
 import { Link } from "react-router-dom";
 import Cards from "./Card";
 import Paginate from "./Paginate";
@@ -39,10 +39,6 @@ export default function Home() {
     e.preventDefault();
     dispatch(getRecipes());
   }
-  function handleFilterTypesFi(e) {
-    dispatch(filterRecipesByTypeFi(e.target.value))
-    setCurrentPage(1)
-  }
   function handleFilterTypes(e) {
     dispatch(filterRecipesByType(e.target.value))
     setCurrentPage(1)
@@ -50,6 +46,12 @@ export default function Home() {
   function handleSort(e) {
     e.preventDefault()
     dispatch(orderByName(e.target.value))
+    setCurrentPage(1)
+    setSort(`Ordenado ${e.target.value}`)
+  }
+  function handleOrderHScore(e) {
+    e.preventDefault()
+    dispatch(orderByHScore(e.target.value))
     setCurrentPage(1)
     setSort(`Ordenado ${e.target.value}`)
   }
@@ -85,6 +87,11 @@ export default function Home() {
                 <option value="default" disabled >Alphabetical order</option>
                 <option value='asc'>A-Z</option>
                 <option value='des'>Z-A</option>
+              </select>
+              <select onChange={e => handleOrderHScore(e)} defaultValue='default' key='sortHS' className={styles.filters}>
+                <option value="default" disabled >Health Score order</option>
+                <option value='asc'>Higher</option>
+                <option value='des'>Lower</option>
               </select>
               <select onChange={e => handleFilterTypes(e)} key='types' className={styles.filters} defaultValue='default'>
                 <option value="default" disabled >Types of diets</option>

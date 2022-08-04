@@ -4,6 +4,7 @@ export const GET_RECIPES = 'GET_RECIPES'                  //CARDS
 export const FILTER_TYPES_FI = 'FILTER_TYPES_FI'
 export const FILTER_BY_TYPES = 'FILTER_BY_TYPES'
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'
+export const ORDER_BY_HSCORE = 'ORDER_BY_HSCORE'
 export const GET_RECIPES_TITLE = 'GET_RECIPES_TITLE'      //SEARCH
 export const POST_RECIPE = 'POST_RECIPE'
 export const GET_DIETS = 'GET_DIETS'
@@ -39,6 +40,12 @@ export function filterRecipesByType(payload) {
   return {
     type: FILTER_BY_TYPES,
     payload
+  }
+}
+export function orderByHScore(payload){
+  return {
+      type: ORDER_BY_HSCORE,
+      payload
   }
 }
 export function orderByName(payload) {
