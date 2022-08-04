@@ -11,6 +11,7 @@ import RecipeCreate from './components/RecipeCreate';
 import Detail from './components/Datail';
 import Footer from './components/Footer';
 import About from './components/About';
+import Loading from './components/Loading';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route exact path='/recipe' element={<RecipeCreate />} />
           <Route path='/recipe/:id' element={<Detail />} />
           <Route path='/about' element={<About />} />
+          <Route path='/loading' element={<Loading />} />
         </Routes>
         <Footer />
       </div>
