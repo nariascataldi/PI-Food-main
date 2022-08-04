@@ -1,5 +1,4 @@
 import styles from "./Loading.module.css"
-// import React from 'react';
 import { NavLink } from 'react-router-dom';
 import React, { Fragment, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';

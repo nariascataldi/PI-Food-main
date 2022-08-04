@@ -1,7 +1,7 @@
 require('dotenv').config();
 const API_KEY = process.env.API_KEY;
 const BACKEND_PORT = 3001;
-var n = 0;  //100 recetas. 9 recetas por página
+var n = 100;  //100 recetas. 9 recetas por página
 // Endpoints/Flags que pueden utilizar
 
 const API_RECIPES = 'https://api.spoonacular.com/recipes/complexSearch' + '?apiKey=' + API_KEY; //https://api.spoonacular.com/recipes/complexSearch?apiKey=07a9cf8e55824b2ebcc60aaa3b93d787

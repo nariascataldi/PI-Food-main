@@ -26,7 +26,7 @@ const dietLoader = async function () {
     console.log(error)
   }
 }
-var boolean = false;
+var boolean = true;
 // Syncing all the models at once.
 conn.sync({ force: boolean }).then(() => {
   server.listen(3001, () => {
