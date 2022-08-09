@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, filterRecipesByType, orderByName, orderByHScore } from "../actions";
+import { getRecipes, filterRecipesByType, orderByName, orderByHScore } from "../redux/actions";
 import { Link } from "react-router-dom";
 import Cards from "./Card";
 import Paginate from "./Paginate";

@@ -14,7 +14,7 @@ const initialState = {
   recipes: [],
   allRecipes: [],
   diets: [],
-  detail:[],
+  detail: [],
 
 }
 function rootReducer(state = initialState, action) {
@@ -25,7 +25,6 @@ function rootReducer(state = initialState, action) {
         recipes: action.payload,
         allRecipes: action.payload
       }
-      
     case FILTER_BY_TYPES:
       const allRecipes = state.allRecipes; //state.recipes
       const typesFiltered = action.payload === 'All' ? allRecipes : allRecipes.filter(el => el.diets.includes(action.payload) ||
@@ -59,7 +58,6 @@ function rootReducer(state = initialState, action) {
         recipes: sortHScore
       }
     case ORDER_BY_NAME:
-      
       const sortArr = action.payload === 'asc' ?
         state.recipes.sort(function (a, b) {
           if (a.title > b.title) {
@@ -83,8 +81,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         recipes: sortArr
       }
-    
-    
     case GET_RECIPES_TITLE:
       return {
         ...state,

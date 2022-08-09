@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from './SearchBar.module.css'
 
-import { getRecipesTitle } from "../actions";
+import { getRecipesTitle } from "../redux/actions";
 
 export default function SearchBar() {
   const dispatch = useDispatch("")
