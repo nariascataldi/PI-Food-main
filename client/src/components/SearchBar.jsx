@@ -17,7 +17,8 @@ export default function SearchBar() {
   function handleSubmit(e) {
     e.preventDefault()
     dispatch(getRecipesTitle(title))
-  }
+    setTitle('')  //me falta darle al value
+    }
 
   return (
 
@@ -25,6 +26,7 @@ export default function SearchBar() {
       <input
         icon='search'
         type='text'
+        value={title}
         placeholder="Search..."
         onChange={(e) => handleInputChange(e)}
         className={styles.input}

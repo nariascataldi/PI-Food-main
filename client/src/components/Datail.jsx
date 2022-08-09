@@ -2,20 +2,20 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { recipeDetail } from "../actions";
+import { cleanDetail, recipeDetail } from "../actions";
 import style from "./Detail.module.css";
 import Loading from "./Loading";
 
 export default function RecipeDetail() {
-  console.log('DETAIL ');
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
     dispatch(recipeDetail(id));
+    return ()=> dispatch(cleanDetail())
   }, [dispatch, id]);
 
   const detailedRecipe = useSelector(state => state.detail)
-  console.log(detailedRecipe)
+  console.log('detailedRecipe: ', detailedRecipe)
 
   return (
     <div className={style.component}>
@@ -38,7 +38,10 @@ export default function RecipeDetail() {
             </div>
           </div>
           :
-          <div className={style.loading}><Loading></Loading></div>
+          <div className={style.loading}>
+
+            <Loading></Loading>
+          </div>
       }
     </div>
   )

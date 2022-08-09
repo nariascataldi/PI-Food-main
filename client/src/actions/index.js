@@ -9,6 +9,7 @@ export const GET_RECIPES_TITLE = 'GET_RECIPES_TITLE'      //SEARCH
 export const POST_RECIPE = 'POST_RECIPE'
 export const GET_DIETS = 'GET_DIETS'
 export const RECIPE_DETAIL = 'RECIPE_DETAIL'
+export const CLEAN_DETAIL = 'CLEAN_DETAIL'
 
 export function getRecipes() {
   return async function (dispatch) {
@@ -81,5 +82,11 @@ export function recipeDetail(id){
         type: RECIPE_DETAIL, 
         payload: json.data
       })
+  }
+}
+export function cleanDetail(){
+  return {
+    type: CLEAN_DETAIL,
+    payload: []
   }
 }

@@ -7,6 +7,7 @@ import {
   GET_RECIPES_TITLE,
   RECIPE_DETAIL,
   POST_RECIPE,
+  CLEAN_DETAIL,
   // FILTER_TYPES_FI
 } from "../actions/index";
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   allRecipes: [],
   diets: [],
   detail:[],
+
 }
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -57,8 +59,9 @@ function rootReducer(state = initialState, action) {
         recipes: sortHScore
       }
     case ORDER_BY_NAME:
+      
       const sortArr = action.payload === 'asc' ?
-        state.allRecipes.sort(function (a, b) {
+        state.recipes.sort(function (a, b) {
           if (a.title > b.title) {
             return 1;
           }
@@ -67,7 +70,7 @@ function rootReducer(state = initialState, action) {
           }
           return 0;
         }) :
-        state.allRecipes.sort(function (a, b) {  //de forma descendente
+        state.recipes.sort(function (a, b) {  //de forma descendente
           if (a.title > b.title) {
             return -1;
           }
@@ -80,6 +83,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         recipes: sortArr
       }
+    
     
     case GET_RECIPES_TITLE:
       return {
@@ -96,6 +100,11 @@ function rootReducer(state = initialState, action) {
         ...state
       }
     case RECIPE_DETAIL:
+      return {
+        ...state,
+        detail: action.payload
+      }
+    case CLEAN_DETAIL:
       return {
         ...state,
         detail: action.payload
