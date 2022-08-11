@@ -32,7 +32,7 @@ conn.sync({ force: boolean }).then(() => {
   server.listen(process.env.PORT || BACKEND_PORT, () => {
     dietLoader()
     if (!boolean) {
-      console.log(`It's listening at ${BACKEND_PORT}, recuerda setear el force a true y aumentar las peticiones a 100 de recetas`); // eslint-disable-line no-console
+      console.log(`It's listening at ${BACKEND_PORT}, recuerda setear el force a true`); // eslint-disable-line no-console
     } else {
       console.log(`Running at ${BACKEND_PORT}`)
     }
