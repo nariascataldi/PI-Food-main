@@ -9,6 +9,7 @@ const server = require('./src/app.js');
 const { Diet, conn } = require('./src/db.js');
 const { BACKEND_PORT } = require('./src/utils/config/index.js');
 const model = require('./src/apiInfo/allData');
+require('dotenv').config();
 
 // la funcion allDiets me devuelve un arreglo con todas las dietas de la api
 // cargar la bd con un findOrCreate

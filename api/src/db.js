@@ -7,7 +7,7 @@ const {
 } = process.env;
 
 let sequelize =
-  process.env.NODE_ENV === "food"
+  process.env.NODE_ENV === "production"
     ? new Sequelize({
         database: DB_NAME,
         dialect: "postgres",
