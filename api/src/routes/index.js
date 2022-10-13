@@ -59,6 +59,14 @@ router.post('/recipes', async (req, res) => {
         creditsText,
         // TODO: agregar los booleanos
     } = req.body;
+    
+    if(!image){
+        try {
+            image = await (await axios.get('https://dog.ceo/api/breeds/image/random')).data.message;
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const recipeCreated = await Recipe.create({
         title,
         summary,
